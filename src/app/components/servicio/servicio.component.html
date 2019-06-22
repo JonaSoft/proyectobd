@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <div class="container" style="height:auto;">
+                <div class="row ">
+                    <div class="container">
+                        <h4 class="titulo">Selecciona Data que subirá al servidor </h4>
+                        <div class="col-md-12">
+                            <div appNgDropFiles [archivos]="archivos" appNgDropFiles (mouseSobre)="estaSobreElemento=$event" [ngClass]="{ 'file-over':estaSobreElemento }" class="container-fluid well drop-zone">
+                                <h6 class="text-white text-left">Pör favor arrastre y suelte aquí...</h6>
+                                <img src="../../../assets/imagen/drop-images.png" width="85%">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button (click)="cargarImagenes()" [disabled]="archivos.length===0" class="btn btn-success btn-block">Iniciar</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button (click)="limpiarContenido()" class="btn btn-danger btn-block">Cancelar</button><br>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-12 d-flex justify-content-center" style="">
+            <br> <br>
+            <div class="col-lg-12 col-sm-12 animated fadeIn" style="padding:0px;margin-top: 2px;
+              width: 100%;max-height:500px;height:auto;overflow-y: scroll;background-color:white;">
+
+                <div class="d-flex justify-content-center" style="font-size:14px;width:100%;height:50px
+                  ;background-color:black ;">
+                    <div class="col-5 text-center" style="color:white;margin: auto;">FileName</div>
+                    <div class="col-3 text-center" style="color:white;margin: auto;">Size</div>
+                    <div class="col-4 text-center" style="color:white;margin: auto;">Progress</div>
+                </div>
+
+                <div *ngFor="let archivo of archivos" class="container-fluid d-flex justify-content-center" style="width:100%;
+                  font-size:12px;padding:0px;margin:0px;background-color: white;">
+
+                    <div class="col-5" [ngClass]="{'text-green': archivo.progreso>=100}">
+                        {{archivo.nombreArchivo}}<br><br>
+                    </div>
+                    <div class="col-3 text-center">
+                        {{archivo.archivo.size/1024 | number:'.2-2'}} KB
+                    </div>
+                    <div class="col-4 container">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" [ngStyle]="{'width': archivo.progreso+'%'}"></div>
+                        </div>
+                    </div>
+
+                    <br>
+                </div>
+
+                <br>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <app-importar></app-importar>
+    </div>
+    <div class="row">
+        <div class="container">
+            <h6>
+                <ul class="text-white">
+                    <li *ngFor="let item of items | async" class="text-white">
+                      {{ item.url }}
+                    </li>
+                  </ul>
+            </h6>
+        </div>
+    </div>
+</div>

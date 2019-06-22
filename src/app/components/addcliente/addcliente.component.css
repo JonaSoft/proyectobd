@@ -1,0 +1,38 @@
+.fondomain {
+    width: 100%;
+    min-height: 800px;
+    height: auto;
+    
+}
+
+input{
+    background-color: #def;
+    border: 0;
+    border-radius: 5px;
+    margin-left: 5px;
+    text-transform: uppercase;
+    width:160px;
+}
+.inputextralarge{
+    text-transform: uppercase;
+    max-width:450px;
+    width:auto;
+}
+.inputlarge{
+    text-transform: uppercase;
+    max-width:270px;
+    width:auto;
+}
+.inputmedium{
+    text-transform: uppercase;
+    width:85px;
+}
+.inputsmall{
+    text-transform: uppercase;
+    width:50px;
+}
+.subtitulo{
+    background-color:#848484;
+    height:30px;
+    border-radius:10px
+}

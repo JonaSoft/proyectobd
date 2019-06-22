@@ -1,0 +1,9 @@
+
+a{
+    font-family: cursive;
+    color: white;
+}
+a:hover{
+        font-family: cursive;
+        color: rgb(41, 121, 212);
+    }

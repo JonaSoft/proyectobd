@@ -1,0 +1,121 @@
+<app-addcliente *ngIf="mostrarficha"></app-addcliente>
+
+
+<div *ngIf="mostrarbuscar" class="container">
+    <form class="form-group p-2" style="border:1px solid white;opacity:0.85;background-color: whitesmoke;border:2px outset white;">
+        <!--Inicio Filtros-->
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-4 col-sm-12 ">
+
+                    <div class="input-group input-group-sm mb-3 mt-2 ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text " id="inputGroup-sizing-sm" style="font-size:12px;">R.U.C.</span>
+                        </div>
+                        <input (keyup)="buscaRuc1($event)" type="text" class="form-control text-right" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="color: white;background-color:grey;">
+                    </div>
+
+                </div>
+                <div class="col-md-8 col-sm-12 ">
+                    <ul class="list-group list-group-horizontal-sm" style="font-size:11px;">
+                        <a (click)="buscaStatus1(this.value='Aproach')" class="list-group-item list-group-item-action list-group-item-success">Aproach</a>
+                        <a (click)="buscaStatus1(this.value='Visita/Reunion')" class="list-group-item list-group-item-action list-group-item-secondary">Visita/Reunion</a>
+                        <a (click)="buscaStatus1(this.value='Propuesta enviada')" class="list-group-item list-group-item-action list-group-item-secondary">Propuesta enviada</a>
+                        <a (click)="buscaStatus1(this.value='Manejo de observaciones')" class="list-group-item list-group-item-action list-group-item-secondary">Manejo de observaciones</a>
+                        <a (click)="buscaStatus1(this.value='Cierre')" class="list-group-item list-group-item-action list-group-item-secondary">Cierre</a>
+                    </ul>
+                </div>
+                <br>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md-4 col-sm-12">
+
+                    <div class="input-group input-group-sm mb-3 mt-1 ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm" style="font-size:12px;">CLIENTE</span>
+                        </div>
+                        <input (keyup.enter)="buscaRsocial(textobuscar.value)" type="text" class="form-control text-right" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="color: white;background-color:grey;" #textobuscar>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <ul class="list-group list-group-horizontal-sm" style="font-size:11px;">
+                        <a (click)="buscaResponsable(this.value='AG')" class="list-group-item list-group-item-action list-group-item-success">AG</a>
+                        <a (click)="buscaResponsable(this.value='DP')" class="list-group-item list-group-item-action list-group-item-secondary">DP</a>
+                        <a (click)="buscaResponsable(this.value='VM')" class="list-group-item list-group-item-action list-group-item-secondary">VM</a>
+                        <a (click)="buscaResponsable(this.value='Ejecutivo')" class="list-group-item list-group-item-action list-group-item-secondary">Ejecutivo</a>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <!--Fin Filtros-->
+        <div class="container mt-2" style="height:500px;overflow-y: scroll;border:2px outset white; background-color: rgb(206, 238, 102);">
+            <table class="table table-hover" style="opacity:0.85; background-color: rgb(206, 238, 102);font-size:12px;width:100%;padding:0px;margin:0px;">
+                <thead class="fuente" style="background-color:#041941;color:white;font-family: cursive;font-size:12px;height:20px;">
+
+                    <th> # </th>
+                    <th>RUC</th>
+                    <th>Razón Social</th>
+                    <th>Plazo</th>
+                    <th>Servicio</th>
+                    <th>Status</th>
+                    <th>Responsable</th>
+                    <th> </th>
+                    <th> </th>
+                    <th> </th>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let item of clientes;let i = index;">
+                        <td scope="row"> {{i+1}}</td>
+                        <td> <a class="text-primary">{{item.ruc}}</a></td>
+                        <td>{{item.rsocial}}</td>
+                        <td>{{item.estadocon}}</td>
+                        <td>{{item.direccion}}</td>
+                        <td>{{item.distrito}}</td>
+                        <td>{{item.responsable}}</td>
+                        <td>
+                            <i (click)="getFicha(item.uid, item)" class="fas fa-table text-success" title="Actualizar"></i>
+                        </td>
+                        <td>
+                            <i (click)="deleteCliente(item.uid,item.rsocial)" class="fas fa-eraser text-danger" title="Borrar"></i>
+                        </td>
+                        <td>
+                            <i (click)="newFicha(item.uid,item)" class="fas fa-file text-primary" title="Nuevo"></i>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="container m-2">
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary btn-block">Exportar Data</button>
+                </div>
+
+            </div>
+            <!--<div class="col-md-6 text-center">
+                        <button type="submit" class="btn btn-success ">Buscar Data</button>
+                    </div>-->
+        </div>
+
+        <!--<div class="container">
+            <div class="row">
+                <div class="col-6 offset-6">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+                        <label class="custom-file-label" for="customFileLang">Importar Archivo</label>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </form>
+
+</div>
