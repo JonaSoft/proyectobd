@@ -7,54 +7,67 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-md-4 col-sm-12 ">
+                <div class="col-md-3 col-sm-12 ">
+
+                    <div class="input-group input-group-sm mb-3 mt-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text " id="inputGroup-sizing-sm" style="font-size:15px;font-family: cursive;">R.U.C.</span>
+                        </div>
+                        <input (keyup)="buscaRuc1($event)" type="text" class="form-control text-right" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="11" style="color: white;background-color:grey;font-size:17px;font-family: cursive;">
+                    </div>
+
+                </div>
+                <div class="col-md-5"><span></span>
+                </div>
+                <div class="col-md-4 col-sm-12">
 
                     <div class="input-group input-group-sm mb-3 mt-2 ">
                         <div class="input-group-prepend">
-                            <span class="input-group-text " id="inputGroup-sizing-sm" style="font-size:12px;">R.U.C.</span>
+                            <span class="input-group-text" id="inputGroup-sizing-sm" style="font-size:15px;font-family: cursive;">CLIENTE</span>
                         </div>
-                        <input (keyup)="buscaRuc1($event)" type="text" class="form-control text-right" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="color: white;background-color:grey;">
+                        <input (keyup.enter)="buscaRsocial(textobuscar.value)" type="text" class="form-control text-right" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="color: white;background-color:grey;font-size:17px;font-family: cursive;"
+                            #textobuscar>
                     </div>
-
                 </div>
-                <div class="col-md-8 col-sm-12 ">
-                    <ul class="list-group list-group-horizontal-sm" style="font-size:11px;">
-                        <a (click)="buscaStatus1(this.value='Aproach')" class="list-group-item list-group-item-action list-group-item-success">Aproach</a>
-                        <a (click)="buscaStatus1(this.value='Visita/Reunion')" class="list-group-item list-group-item-action list-group-item-secondary">Visita/Reunion</a>
-                        <a (click)="buscaStatus1(this.value='Propuesta enviada')" class="list-group-item list-group-item-action list-group-item-secondary">Propuesta enviada</a>
-                        <a (click)="buscaStatus1(this.value='Manejo de observaciones')" class="list-group-item list-group-item-action list-group-item-secondary">Manejo de observaciones</a>
-                        <a (click)="buscaStatus1(this.value='Cierre')" class="list-group-item list-group-item-action list-group-item-secondary">Cierre</a>
-                    </ul>
-                </div>
-                <br>
             </div>
+            <div class="container p-2" style="border:2px solid rgb(218, 213, 213);border-radius: 5px;cursor:pointer;">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <ul class="list-group list-group-horizontal-sm" style="font-size:11px;">
+                            <!--<a (click)="buscaStatus1(this.value='APROACH')" class="list-group-item list-group-item-action list-group-item-success">APROACH</a>-->
+                            <a (click)="buscaStatus1(this.value='CIERRE')" class="list-group-item list-group-item-action list-group-item-secondary">CIERRE</a>
+                            <a (click)="buscaStatus1(this.value='CONTACTO')" class="list-group-item list-group-item-action list-group-item-success">CONTACTO</a>
+                            <a (click)="buscaStatus1(this.value='MANEJO DE OBSERVACIONES')" class="list-group-item list-group-item-action list-group-item-secondary">MANEJO DE OBSERVACIONES</a>
+                            <a (click)="buscaStatus1(this.value='NO CONTACTAR')" class="list-group-item list-group-item-action list-group-item-success">NO CONTACTAR</a>
 
-            <div class="row mt-2">
-                <div class="col-md-4 col-sm-12">
-
-                    <div class="input-group input-group-sm mb-3 mt-1 ">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm" style="font-size:12px;">CLIENTE</span>
-                        </div>
-                        <input (keyup.enter)="buscaRsocial(textobuscar.value)" type="text" class="form-control text-right" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="color: white;background-color:grey;" #textobuscar>
+                            <a (click)="buscaStatus1(this.value='PENDIENTE')" class="list-group-item list-group-item-action list-group-item-secondary">PENDIENTE</a>
+                            <a (click)="buscaStatus1(this.value='PROPUESTA ENVIADA')" class="list-group-item list-group-item-action list-group-item-success">PRESENTACION</a>
+                            <a (click)="buscaStatus1(this.value='PROPUESTA ENVIADA')" class="list-group-item list-group-item-action list-group-item-secondary">PROPUESTA ENVIADA</a>
+                            <a (click)="buscaStatus1(this.value='VISITA / REUNION')" class="list-group-item list-group-item-action list-group-item-success">VISITA / REUNION</a>
+                        </ul>
                     </div>
+                    <br>
                 </div>
-                <div class="col-md-8 col-sm-12">
-                    <ul class="list-group list-group-horizontal-sm" style="font-size:11px;">
-                        <a (click)="buscaResponsable(this.value='AG')" class="list-group-item list-group-item-action list-group-item-success">AG</a>
-                        <a (click)="buscaResponsable(this.value='DP')" class="list-group-item list-group-item-action list-group-item-secondary">DP</a>
-                        <a (click)="buscaResponsable(this.value='VM')" class="list-group-item list-group-item-action list-group-item-secondary">VM</a>
-                        <a (click)="buscaResponsable(this.value='Ejecutivo')" class="list-group-item list-group-item-action list-group-item-secondary">Ejecutivo</a>
 
-                    </ul>
+                <div class="row mt-2">
 
+                    <div class="col-md-12 col-sm-12">
+                        <ul class="list-group list-group-horizontal-sm" style="font-size:11px;">
+                            <a (click)="buscaResponsable(this.value='AG')" class="list-group-item list-group-item-action list-group-item-success">AG</a>
+                            <a (click)="buscaResponsable(this.value='DP')" class="list-group-item list-group-item-action list-group-item-secondary">DP</a>
+                            <a (click)="buscaResponsable(this.value='VM')" class="list-group-item list-group-item-action list-group-item-success">VM</a>
+                            <a (click)="buscaResponsable(this.value='EJECUTIVO')" class="list-group-item list-group-item-action list-group-item-secondary">EJECUTIVO</a>
+
+                        </ul>
+
+                    </div>
                 </div>
             </div>
         </div>
 
         <!--Fin Filtros-->
-        <div class="container mt-2" style="height:500px;overflow-y: scroll;border:2px outset white; background-color: rgb(206, 238, 102);">
-            <table class="table table-hover" style="opacity:0.85; background-color: rgb(206, 238, 102);font-size:12px;width:100%;padding:0px;margin:0px;">
+        <div class="container mt-2 tabla">
+            <table class="table table-hover" style="opacity:0.85; background-color: rgb(238, 237, 182);font-size:12px;width:100%;padding:0px;margin:0px;">
                 <thead class="fuente" style="background-color:#041941;color:white;font-family: cursive;font-size:12px;height:20px;">
 
                     <th> # </th>
@@ -69,14 +82,16 @@
                     <th> </th>
                 </thead>
                 <tbody>
-
+                    <div *ngIf="result">
+                        <h3 class="text-danger">Sin coincidencias para su busqueda...!!!</h3>
+                    </div>
                     <tr *ngFor="let item of clientes;let i = index;">
                         <td scope="row"> {{i+1}}</td>
-                        <td> <a class="text-primary">{{item.ruc}}</a></td>
+                        <td class="text-large">{{item.ruc}}</td>
                         <td>{{item.rsocial}}</td>
-                        <td>{{item.estadocon}}</td>
-                        <td>{{item.direccion}}</td>
-                        <td>{{item.distrito}}</td>
+                        <td>{{item.plazoclie}}</td>
+                        <td>{{item.servicio}}</td>
+                        <td>{{item.status}}</td>
                         <td>{{item.responsable}}</td>
                         <td>
                             <i (click)="getFicha(item.uid, item)" class="fas fa-table text-success" title="Actualizar"></i>
@@ -90,11 +105,12 @@
                     </tr>
 
                 </tbody>
+
             </table>
 
         </div>
 
-        <div class="container m-2">
+        <div class="container-fluid mt-2">
             <div class="row">
                 <div class="col-md-12">
                     <button type="button" class="btn btn-primary btn-block">Exportar Data</button>

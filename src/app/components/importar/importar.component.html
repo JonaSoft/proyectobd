@@ -1,4 +1,8 @@
 <h3 class="text-white">
-  importar works!
+    Importaciones!
 </h3>
 <button (click)="cargajson()" type="button" class="btn btn-warning">Importar</button>
+<div class="container m-5 text-white">
+    <input (click)="handleFileSelect($event)" type="file" id="files" name="files[]" multiple />
+    <output id="list"></output>
+</div>

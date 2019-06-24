@@ -2,37 +2,43 @@
     width: 100%;
     min-height: 800px;
     height: auto;
-    
 }
 
-input{
+input {
     background-color: #def;
     border: 0;
     border-radius: 5px;
     margin-left: 5px;
     text-transform: uppercase;
-    width:160px;
+    text-align: right;
+    padding-right: 3px;
+    width: 120px;
 }
-.inputextralarge{
+
+.inputextralarge {
     text-transform: uppercase;
-    max-width:450px;
-    width:auto;
+    max-width: 450px;
+    width: auto;
 }
-.inputlarge{
+
+.inputlarge {
     text-transform: uppercase;
-    max-width:270px;
-    width:auto;
+    max-width: 270px;
+    width: auto;
 }
-.inputmedium{
+
+.inputmedium {
     text-transform: uppercase;
-    width:85px;
+    width: 85px;
 }
-.inputsmall{
+
+.inputsmall {
     text-transform: uppercase;
-    width:50px;
+    width: 50px;
 }
-.subtitulo{
-    background-color:#848484;
-    height:30px;
-    border-radius:10px
+
+.subtitulo {
+    background-color: #848484;
+    height: 30px;
+    border-radius: 10px
 }

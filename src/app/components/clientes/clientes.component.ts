@@ -6,7 +6,7 @@ import { DataService } from '../../servicios/data.service';
 //import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map'
-import { strictEqual } from 'assert';
+
 
 @Component({
   selector: 'app-clientes',
@@ -28,11 +28,14 @@ export class ClientesComponent implements OnInit {
   public clientes = [];
   public dataFinal=[];
   public cliente='';
+  public matriz=[];
+  public result=false;
   public ficha:ClienteInterface;
   ngOnInit() {
     this._DataService.enviarData().subscribe(clientes => {
-     // console.log(clientes);
+      console.log(clientes);
       this.clientes=clientes;
+      this.matriz=clientes;
       console.log(this.clientes.length) 
 
     })
@@ -74,6 +77,7 @@ export class ClientesComponent implements OnInit {
    
   }
   buscaRuc(event:any):void{
+    this.result=false;
     this.dataFinal=[];
     let valor = event.target.value;  
     console.log(valor);
@@ -93,7 +97,11 @@ export class ClientesComponent implements OnInit {
           this.clientes=this.dataFinal.sort();
         
         }
-       
+      }
+      if (this.clientes.length==0){
+        console.log('Sin registros ');
+        this.result=true
+        //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
       }
       console.log(data);
       this.dataFinal=[]
@@ -101,12 +109,13 @@ export class ClientesComponent implements OnInit {
   }
   buscaRuc1(event:any){
     //this.clientes=[];
+    this.result=false;
     this.dataFinal=[];
     let valor = event.target.value;  
     console.log(valor);
     //his._DataService.solicitaData(valor).subscribe(data=>{
     let data=[];
-    data=this.clientes
+    data=this.matriz
     if(valor.length>3){
       for(let z in data){
           console.log(data[z].ruc)
@@ -124,6 +133,12 @@ export class ClientesComponent implements OnInit {
             this.clientes=this.dataFinal.reverse();
           
           }
+         
+      }
+      if (this.clientes.length==0){
+        console.log('Sin registros ');
+        this.result=true
+        //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
       }
     }
       //console.log(data);
@@ -132,13 +147,14 @@ export class ClientesComponent implements OnInit {
   }
   buscaRsocial(valor:string){
     //this.clientes=[];
+    this.result=false;
     this.dataFinal=[];
     //valor = event.target.value;  
     console.log(valor);
     //this._DataService.solicitaData(valor).subscribe(data=>{
     let data=[];  
     //console.log(data)
-    data=this.clientes;
+    data=this.matriz;
     if(valor.length>4){
       valor=valor.toUpperCase();
       for(let z in data){
@@ -157,6 +173,12 @@ export class ClientesComponent implements OnInit {
           this.clientes=this.dataFinal.reverse();
           //this.dataFinal=[];
         }
+       
+      }
+      if (this.clientes.length==0){
+        console.log('Sin registros ');
+        this.result=true
+        //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
       }
     }
       console.log(data);
@@ -164,46 +186,88 @@ export class ClientesComponent implements OnInit {
       //this.clientes=this.dataFinal;
     //})
   }
-  buscaStatus(valor?:any){
-    
+  buscaStatus(valor?:string){
+    this.result=false;
     //let valor:null = event.target.value;  
+    valor = valor.toUpperCase();
     console.log(valor);
-    this._DataService.solicitaData().subscribe(data=>{
-      for(let aproach in data){
-        if(data[aproach].status=="Aproach"){
-            this.dataFinal.push(data[aproach]);
+    //this._DataService.solicitaData().subscribe(data=>{
+      //this.clientes=[];
+    this.dataFinal=[];
+    //valor = event.target.value;  
+    console.log(valor);
+    //this._DataService.solicitaData(valor).subscribe(data=>{
+    let data=[];  
+    //console.log(data)
+    data=this.clientes;
+      for(let item in data){
+        if(data[item].status==valor){
+            this.dataFinal.push(data[item]);
             this.clientes=this.dataFinal.sort();
         }
       }
-    })
+      if (this.clientes.length==0){
+        console.log('Sin registros ');
+        this.result=true
+        //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
+      }
+    //})
   }
   buscaStatus1(valor?:any){
-    this.clientes=[];
+    //this.clientes=[];
+    this.result=false;
     this.dataFinal=[];
     //let valor:null = event.target.value;  
+    valor = valor.toUpperCase();
     console.log(valor);
-    this._DataService.solicitaData().subscribe(data=>{
+    //this._DataService.solicitaData().subscribe(data=>{
+      //this.dataFinal=[];
+      //valor = event.target.value;  
+      //console.log(valor);
+      //this._DataService.solicitaData(valor).subscribe(data=>{
+      let data=[];  
+      //console.log(data)
+      data=this.matriz;
       for(let item in data){
         if(data[item].status==valor){
+          console.log(data[item].status)
             this.dataFinal.push(data[item]);
             this.clientes=this.dataFinal.sort();
         }
       }
-    })
+      console.log(this.dataFinal.length)
+      if (this.dataFinal.length==0){
+        this.clientes=[];
+        console.log('Sin registros ');
+        this.result=true
+        //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
+      } 
+    //})
   }
   buscaResponsable(valor?:any){
+    this.result=false;
     this.clientes=[];
     this.dataFinal=[];
     //let valor:null = event.target.value;  
+    valor = valor.toUpperCase();
     console.log(valor);
-    this._DataService.solicitaData().subscribe(data=>{
+    let data=[];  
+    data=this.matriz;
+    //this._DataService.solicitaData().subscribe(data=>{
       for(let item in data){
-        if(data[item].status==valor){
+        if(data[item].responsable==valor){
             this.dataFinal.push(data[item]);
             this.clientes=this.dataFinal.sort();
         }
+        
       }
-    })
+      console.log(this.clientes.length);
+        if (this.clientes.length==0){
+          console.log('Sin registros ');
+          this.result=true
+          //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
+        }
+    //})
   }
 }
 

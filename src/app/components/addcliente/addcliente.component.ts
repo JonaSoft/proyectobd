@@ -26,6 +26,7 @@ export class AddclienteComponent implements OnInit {
   mostrarficha=true;
   botonsave=false;
   botonnew=true;
+  mostrarfecha=false;
   
 
   ngOnInit() {
@@ -65,6 +66,9 @@ export class AddclienteComponent implements OnInit {
   nuevocliente(){
     this.botonnew=false;
     this.botonsave=true
+  }
+  activaFecha(){
+    this.mostrarfecha=!this.mostrarfecha;
   }
   
 }
