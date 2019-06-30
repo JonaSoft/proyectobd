@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { environment } from '../environments/environment';
 import { AngularFireModule} from  '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -7,7 +8,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import {NgDropFilesDirective} from './directives/ng-drop-files.directive';
 import { HttpClientModule} from '@angular/common/http'
 
@@ -16,10 +17,11 @@ import { APP_ROUTING } from './app.routes';
 
 
 //Servicios
+import {AuthService} from './servicios/auth.service';
 import { DataService} from 'src/app/servicios/data.service';
 import { CargaimagenService} from 'src/app/servicios/cargaimagen.service';
 
-
+import { AuthGuard} from './guards/auth.guard';
 //Componentes
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -29,8 +31,12 @@ import { ServicioComponent } from './components/servicio/servicio.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { ImportarComponent } from './components/importar/importar.component';
+import { UpdateclienteComponent } from './components/updatecliente/updatecliente.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 //import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
+//Guards
+
 
 
 @NgModule({
@@ -42,7 +48,9 @@ import { ImportarComponent } from './components/importar/importar.component';
     ServicioComponent,
     LoginComponent,
     NgDropFilesDirective,
-    ImportarComponent
+    ImportarComponent,
+    UpdateclienteComponent,
+    LoadingComponent
   ],
   imports: [
     FormsModule,
@@ -57,8 +65,10 @@ import { ImportarComponent } from './components/importar/importar.component';
   ],
   providers: [
     DataService,
+    AuthService,
     CargaimagenService,
-    AngularFirestore
+    AngularFirestore,
+    AuthGuard
    
   ],
   bootstrap: [AppComponent]

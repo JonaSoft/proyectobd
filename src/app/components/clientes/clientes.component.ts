@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteInterface } from '../../models/clienteinterface';
 import { DataService } from '../../servicios/data.service';
+import { Router } from  '@angular/router';
 //import { NgForm } from '@angular/forms';
 //import { ConsoleReporter } from 'jasmine';
 //import {HttpClient} from '@angular/common/http';
@@ -17,6 +18,7 @@ export class ClientesComponent implements OnInit {
 
   constructor(public _DataService: DataService,
               public _DataFicha: DataService,
+              private router: Router
               //public http:HttpClient
               ) {
  
@@ -51,9 +53,10 @@ export class ClientesComponent implements OnInit {
 
     //})
   //console.log(idcliente)
+  this.router.navigate(['/update']);
   this._DataFicha.selectedCliente = Object.assign({},cliente);
-   this.mostrarbuscar=false;
-   this.mostrarficha=true;
+   //this.mostrarbuscar=false;
+   //this.mostrarficha=true;
   }
 
 

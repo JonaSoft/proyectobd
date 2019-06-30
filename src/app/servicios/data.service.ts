@@ -59,9 +59,10 @@ export class DataService {
     }))   
 
    }
-   addClientes(clienteNuevo:ClienteInterface): void {
+   addClientes(clienteNuevo:any) {
      this.clientesCollection.add(clienteNuevo);
-     console.log(clienteNuevo)
+     return (clienteNuevo);
+     
    }
    updateClientes(cliente:ClienteInterface): void{
      let idCliente = cliente.uid;

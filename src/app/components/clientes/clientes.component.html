@@ -1,7 +1,10 @@
-<app-addcliente *ngIf="mostrarficha"></app-addcliente>
+<app-navbar></app-navbar>
+<app-addcliente *ngIf="mostrarficha">
+</app-addcliente>
 
 
-<div *ngIf="mostrarbuscar" class="container">
+<div *ngIf="mostrarbuscar" class="container animated fast fadeIn ">
+
     <form class="form-group p-2" style="border:1px solid white;opacity:0.85;background-color: whitesmoke;border:2px outset white;">
         <!--Inicio Filtros-->
         <div class="container-fluid">
@@ -11,7 +14,7 @@
 
                     <div class="input-group input-group-sm mb-3 mt-2">
                         <div class="input-group-prepend">
-                            <span class="input-group-text " id="inputGroup-sizing-sm" style="font-size:15px;font-family: cursive;">R.U.C.</span>
+                            <span class="input-group-text " id="inputGroup-sizing-sm" style="font-size:12px;font-family: cursive;">R.U.C.</span>
                         </div>
                         <input (keyup)="buscaRuc1($event)" type="text" class="form-control text-right" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="11" style="color: white;background-color:grey;font-size:17px;font-family: cursive;">
                     </div>
@@ -23,21 +26,21 @@
 
                     <div class="input-group input-group-sm mb-3 mt-2 ">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-sm" style="font-size:15px;font-family: cursive;">CLIENTE</span>
+                            <span class="input-group-text" id="inputGroup-sizing-sm" style="font-size:12px;font-family: cursive;">CLIENTE</span>
                         </div>
                         <input (keyup.enter)="buscaRsocial(textobuscar.value)" type="text" class="form-control text-right" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="color: white;background-color:grey;font-size:17px;font-family: cursive;"
                             #textobuscar>
                     </div>
                 </div>
             </div>
-            <div class="container p-2" style="border:2px solid rgb(218, 213, 213);border-radius: 5px;cursor:pointer;">
+            <div class="container p-1" style="border:2px solid rgb(218, 213, 213);border-radius: 5px;cursor:pointer;">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        <ul class="list-group list-group-horizontal-sm" style="font-size:11px;">
+                        <ul class="list-group list-group-horizontal-sm">
                             <!--<a (click)="buscaStatus1(this.value='APROACH')" class="list-group-item list-group-item-action list-group-item-success">APROACH</a>-->
                             <a (click)="buscaStatus1(this.value='CIERRE')" class="list-group-item list-group-item-action list-group-item-secondary">CIERRE</a>
                             <a (click)="buscaStatus1(this.value='CONTACTO')" class="list-group-item list-group-item-action list-group-item-success">CONTACTO</a>
-                            <a (click)="buscaStatus1(this.value='MANEJO DE OBSERVACIONES')" class="list-group-item list-group-item-action list-group-item-secondary">MANEJO DE OBSERVACIONES</a>
+                            <a (click)="buscaStatus1(this.value='MANEJO DE OBSERVACIONES')" class="list-group-item list-group-item-action list-group-item-secondary align-text-top">MANEJO DE OBS</a>
                             <a (click)="buscaStatus1(this.value='NO CONTACTAR')" class="list-group-item list-group-item-action list-group-item-success">NO CONTACTAR</a>
 
                             <a (click)="buscaStatus1(this.value='PENDIENTE')" class="list-group-item list-group-item-action list-group-item-secondary">PENDIENTE</a>
@@ -52,7 +55,7 @@
                 <div class="row mt-2">
 
                     <div class="col-md-12 col-sm-12">
-                        <ul class="list-group list-group-horizontal-sm" style="font-size:11px;">
+                        <ul class="list-group list-group-horizontal-sm" style="font-size:8px;">
                             <a (click)="buscaResponsable(this.value='AG')" class="list-group-item list-group-item-action list-group-item-success">AG</a>
                             <a (click)="buscaResponsable(this.value='DP')" class="list-group-item list-group-item-action list-group-item-secondary">DP</a>
                             <a (click)="buscaResponsable(this.value='VM')" class="list-group-item list-group-item-action list-group-item-success">VM</a>
@@ -68,22 +71,22 @@
         <!--Fin Filtros-->
         <div class="container mt-2 tabla">
             <table class="table table-hover" style="opacity:0.85; background-color: rgb(238, 237, 182);font-size:12px;width:100%;padding:0px;margin:0px;">
-                <thead class="fuente" style="background-color:#041941;color:white;font-family: cursive;font-size:12px;height:20px;">
+                <thead class="fuente" style="background-color:#041941;height:20px;">
 
                     <th> # </th>
                     <th>RUC</th>
-                    <th>Razón Social</th>
-                    <th>Plazo</th>
-                    <th>Servicio</th>
-                    <th>Status</th>
-                    <th>Responsable</th>
+                    <th>RAZON SOCIAL</th>
+                    <th>PLAZO</th>
+                    <th>SERVICIO</th>
+                    <th>STATUS</th>
+                    <th>RESPONSABLE</th>
                     <th> </th>
                     <th> </th>
                     <th> </th>
                 </thead>
                 <tbody>
                     <div *ngIf="result">
-                        <h3 class="text-danger">Sin coincidencias para su busqueda...!!!</h3>
+                        <h6 class="text-danger">Sin coincidencias para su busqueda...!!!</h6>
                     </div>
                     <tr *ngFor="let item of clientes;let i = index;">
                         <td scope="row"> {{i+1}}</td>
@@ -99,9 +102,9 @@
                         <td>
                             <i (click)="deleteCliente(item.uid,item.rsocial)" class="fas fa-eraser text-danger" title="Borrar"></i>
                         </td>
-                        <td>
+                        <!--<td>
                             <i (click)="newFicha(item.uid,item)" class="fas fa-file text-primary" title="Nuevo"></i>
-                        </td>
+                        </td>-->
                     </tr>
 
                 </tbody>

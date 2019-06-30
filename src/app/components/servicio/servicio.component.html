@@ -1,6 +1,52 @@
-<div class="container">
+<app-navbar></app-navbar>
+<div class="container-fluid m-auto animated fast fadeIn fondomain">
     <div class="row">
-        <app-importar></app-importar>
-    </div>
 
+        <div class="container-fluid col-md-3 col-sm-12 ">
+            <div class="col-md-12 col-sm-12" style="margin-top:20%;">
+                <ul class="list-group list-group-vertical text-center text-white p-2" style="font-size:15px;cursor:pointer;font-family:cursive;opacity:0.85;background-color: darkgrey;border-radius:5px;">Seleccionar un Servicio:
+
+                    <a class="list-group-item list-group-item-action list-group-item-secondary text-left text-white bg-dark">Nuevo Registro Cliente</a>
+                    <a class="list-group-item list-group-item-action list-group-item-secondary text-left  text-white bg-dark">Importar Data al Servidor</a>
+                    <a class="list-group-item list-group-item-action list-group-item-secondary text-left  text-white bg-dark">Exportar Base de Datos</a>
+
+
+                </ul>
+
+            </div>
+
+        </div>
+        <div class="col-md-1"></div>
+        <div class="container-fluid col-md-8 col-sm-12 ">
+            <app-addcliente *ngIf="mostrarfichaadd"></app-addcliente>
+
+            <div *ngIf="mostrartablaimportar" class="container-fluid tabla mt-25">
+                <table>
+                    <thead>
+                        <th>#</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of nuevos;let i = index;">
+                            <td scope="row"> {{i+1}}</td>
+                            <td class="text-large">{{item.ruc}}</td>
+                            <td>{{item.ncomercial}}</td>
+                            <td>{{item.plazoclie}}</td>
+                            <td>{{item.tipocon}}</td>
+                            <td>{{item.estadocon}}</td>
+                            <td>{{item.direccion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
 </div>
