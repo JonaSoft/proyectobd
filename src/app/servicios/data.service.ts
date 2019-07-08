@@ -28,7 +28,8 @@ export class DataService {
   public selectedCliente:any={};
  //--------------------------------------------
  public botonsave=true;
- public dataFinal=[]
+ public dataFinal=[];
+ public clientesNuevo=[]
 
   enviarData(){
     //this.clientes = this.afs.collection('clientes').valueChanges();
@@ -61,7 +62,8 @@ export class DataService {
    }
    addClientes(clienteNuevo:any) {
      this.clientesCollection.add(clienteNuevo);
-     return (clienteNuevo);
+     this.clientesNuevo.push(clienteNuevo);
+     return this.clientesNuevo
      
    }
    updateClientes(cliente:ClienteInterface): void{

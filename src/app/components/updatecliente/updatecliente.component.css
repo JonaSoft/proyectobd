@@ -15,6 +15,10 @@ input {
     width: 120px;
 }
 
+input[type=number] {
+    text-align: left
+}
+
 input[type=email] {
     text-transform: lowercase;
 }

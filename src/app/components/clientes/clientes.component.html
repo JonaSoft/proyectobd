@@ -5,9 +5,9 @@
 
 <div *ngIf="mostrarbuscar" class="container animated fast fadeIn ">
 
-    <form class="form-group p-2" style="border:1px solid white;opacity:0.85;background-color: whitesmoke;border:2px outset white;">
+    <form class="form-group p-2" style="background-color: white;">
         <!--Inicio Filtros-->
-        <div class="container-fluid">
+        <div class="container-fluid oculto-impresion">
 
             <div class="row">
                 <div class="col-md-3 col-sm-12 ">
@@ -33,20 +33,20 @@
                     </div>
                 </div>
             </div>
-            <div class="container p-1" style="border:2px solid rgb(218, 213, 213);border-radius: 5px;cursor:pointer;">
+            <div class="container p-1" style="border:2px solid rgb(218, 213, 213);border-radius: 5px;cursor:pointer; color: white;">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <ul class="list-group list-group-horizontal-sm">
                             <!--<a (click)="buscaStatus1(this.value='APROACH')" class="list-group-item list-group-item-action list-group-item-success">APROACH</a>-->
-                            <a (click)="buscaStatus1(this.value='CIERRE')" class="list-group-item list-group-item-action list-group-item-secondary">CIERRE</a>
-                            <a (click)="buscaStatus1(this.value='CONTACTO')" class="list-group-item list-group-item-action list-group-item-success">CONTACTO</a>
-                            <a (click)="buscaStatus1(this.value='MANEJO DE OBSERVACIONES')" class="list-group-item list-group-item-action list-group-item-secondary align-text-top">MANEJO DE OBS</a>
-                            <a (click)="buscaStatus1(this.value='NO CONTACTAR')" class="list-group-item list-group-item-action list-group-item-success">NO CONTACTAR</a>
+                            <a (click)="buscaStatus1(this.value='CIERRE')" class="list-group-item list-group-item-action list-group-item-secondary itemfondoini">CIERRE</a>
+                            <a (click)="buscaStatus1(this.value='CONTACTO')" class="list-group-item list-group-item-action list-group-item-success itemfondo">CONTACTO</a>
+                            <a (click)="buscaStatus1(this.value='MANEJO DE OBSERVACIONES')" class="list-group-item list-group-item-action list-group-item-secondary itemfondoini">MANEJO DE OBS</a>
+                            <a (click)="buscaStatus1(this.value='NO CONTACTAR')" class="list-group-item list-group-item-action list-group-item-success itemfondo">NO CONTACTAR</a>
 
-                            <a (click)="buscaStatus1(this.value='PENDIENTE')" class="list-group-item list-group-item-action list-group-item-secondary">PENDIENTE</a>
-                            <a (click)="buscaStatus1(this.value='PROPUESTA ENVIADA')" class="list-group-item list-group-item-action list-group-item-success">PRESENTACION</a>
-                            <a (click)="buscaStatus1(this.value='PROPUESTA ENVIADA')" class="list-group-item list-group-item-action list-group-item-secondary">PROPUESTA ENVIADA</a>
-                            <a (click)="buscaStatus1(this.value='VISITA / REUNION')" class="list-group-item list-group-item-action list-group-item-success">VISITA / REUNION</a>
+                            <a (click)="buscaStatus1(this.value='PENDIENTE')" class="list-group-item list-group-item-action list-group-item-secondary itemfondoini">PENDIENTE</a>
+                            <a (click)="buscaStatus1(this.value='PROPUESTA ENVIADA')" class="list-group-item list-group-item-action list-group-item-success itemfondo">PRESENTACION</a>
+                            <a (click)="buscaStatus1(this.value='PROPUESTA ENVIADA')" class="list-group-item list-group-item-action list-group-item-secondary itemfondoini">PROPUESTA ENVIADA</a>
+                            <a (click)="buscaStatus1(this.value='VISITA / REUNION')" class="list-group-item list-group-item-action list-group-item-success itemfondo">VISITA / REUNION</a>
                         </ul>
                     </div>
                     <br>
@@ -56,10 +56,11 @@
 
                     <div class="col-md-12 col-sm-12">
                         <ul class="list-group list-group-horizontal-sm" style="font-size:8px;">
-                            <a (click)="buscaResponsable(this.value='AG')" class="list-group-item list-group-item-action list-group-item-success">AG</a>
-                            <a (click)="buscaResponsable(this.value='DP')" class="list-group-item list-group-item-action list-group-item-secondary">DP</a>
-                            <a (click)="buscaResponsable(this.value='VM')" class="list-group-item list-group-item-action list-group-item-success">VM</a>
-                            <a (click)="buscaResponsable(this.value='EJECUTIVO')" class="list-group-item list-group-item-action list-group-item-secondary">EJECUTIVO</a>
+                            <a (click)="buscaResponsable(this.value='AG')" class="list-group-item list-group-item-action list-group-item-success itemfondo">AG</a>
+                            <a (click)="buscaResponsable(this.value='DP')" class="list-group-item list-group-item-action list-group-item-secondary itemfondoini">DP</a>
+                            <a (click)="buscaResponsable(this.value='VM')" class="list-group-item list-group-item-action list-group-item-success itemfondo">VM</a>
+                            <a (click)="buscaResponsable(this.value='EJECUTIVO')" class="list-group-item list-group-item-action list-group-item-secondary itemfondoini">EJECUTIVO</a>
+                            <a (click)="getAllData()" class="list-group-item list-group-item-action list-group-item-success itemfondo">TODOS</a>
 
                         </ul>
 
@@ -70,8 +71,8 @@
 
         <!--Fin Filtros-->
         <div class="container mt-2 tabla">
-            <table class="table table-hover" style="opacity:0.85; background-color: rgb(238, 237, 182);font-size:12px;width:100%;padding:0px;margin:0px;">
-                <thead class="fuente" style="background-color:#041941;height:20px;">
+            <table class="table table-hover" style=" opacity:0.85;background-color:white;font-size:12px;width:100%;padding:0px;margin:0px;">
+                <thead class="fuente" style=" background-color: rgb(25, 79, 144);height:20px;">
 
                     <th> # </th>
                     <th>RUC</th>
@@ -80,7 +81,7 @@
                     <th>SERVICIO</th>
                     <th>STATUS</th>
                     <th>RESPONSABLE</th>
-                    <th> </th>
+                    <th>DISTRITO</th>
                     <th> </th>
                     <th> </th>
                 </thead>
@@ -96,10 +97,11 @@
                         <td>{{item.servicio}}</td>
                         <td>{{item.status}}</td>
                         <td>{{item.responsable}}</td>
-                        <td>
+                        <td>{{item.distrito}}</td>
+                        <td class="iconosaccion">
                             <i (click)="getFicha(item.uid, item)" class="fas fa-table text-success" title="Actualizar"></i>
                         </td>
-                        <td>
+                        <td class="iconosaccion">
                             <i (click)="deleteCliente(item.uid,item.rsocial)" class="fas fa-eraser text-danger" title="Borrar"></i>
                         </td>
                         <!--<td>
@@ -113,28 +115,18 @@
 
         </div>
 
-        <div class="container-fluid mt-2">
-            <div class="row">
-                <div class="col-md-12">
-                    <button type="button" class="btn btn-primary btn-block">Exportar Data</button>
-                </div>
 
+        <div class="container m-1 oculto-impresion">
+
+            <div class="col-md-12">
+                <button (click)="enviarPrinter()" type="button" class="btn  btn-block btn-bloque">Enviar Resultados </button>
             </div>
-            <!--<div class="col-md-6 text-center">
-                        <button type="submit" class="btn btn-success ">Buscar Data</button>
-                    </div>-->
+
+
+
+
         </div>
 
-        <!--<div class="container">
-            <div class="row">
-                <div class="col-6 offset-6">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFileLang" lang="es">
-                        <label class="custom-file-label" for="customFileLang">Importar Archivo</label>
-                    </div>
-                </div>
-            </div>
-        </div>-->
     </form>
 
 </div>

@@ -11,6 +11,30 @@
     border: solid 2px dodgerblue;
 }
 
+ul>a {
+    background-color: rgb(238, 237, 182);
+    color: black
+}
+
+ul>a:hover {
+    background-color: rgba(141, 144, 135, 0.473);
+    color: white
+}
+
+.tabla {
+    width: 100%px;
+    height: 500px;
+    overflow-y: scroll;
+    background-color: black;
+    color: greenyellow;
+    font-size: 10px;
+}
+
+.itemfondo {
+    background-color: rgb(46, 168, 54);
+    color: white;
+}
+
 
 /* Drop Zone */
 

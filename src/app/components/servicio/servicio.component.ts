@@ -13,8 +13,9 @@ import { ClienteInterface } from '../../models/clienteinterface';
 import { FileItem } from "../../models/file-item";
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map'
-import { subscribeOn } from 'rxjs/operators';
-import { map } from 'rxjs-compat/operator/map';
+//import { subscribeOn } from 'rxjs/operators';
+//import { map } from 'rxjs-compat/operator/map';
+//import { map } from 'rxjs/operators'
 
 export interface Item{nombre:string;url:string;}
 
@@ -65,14 +66,8 @@ export class ServicioComponent implements OnInit {
    this.mostrarfichaadd=!(this.mostrarfichaadd);
    this.ir=false;
    this.close=true;
-   //this.irImportar=false;
-   //this.closeImportar=true;
-
-   //console.log(this.mostrarservicio);
    console.log(this.mostrarfichaadd);
    this._DataFicha.selectedCliente = ({});
-   //this._DataFicha.newFicha(this.mostrarfichaadd=true);
-
   
  }
  closeFicha(){
@@ -83,40 +78,53 @@ export class ServicioComponent implements OnInit {
  closeTabla(){
    this.closeImportar=false;
    this.irImportar=true;
-   this.mostrartablaimportar=false
+   //this.mostrartablaimportar=false
  }
  cargajson(){
-   console.log('LLamar archivo');
-   if(this.irImportar=true){
-      this.irImportar=false;
-      this.closeImportar=true;
+    console.log(this.mostrartablaimportar)
+   if(this.mostrartablaimportar===false){
+    console.log('LLamar archivo');
+     // this.irImportar=false;
+      //this.closeImportar=true;
       this.http.get('../../../assets/import.json')
       .subscribe(data=>{
          console.log(data);
-         for(let item in data ){
-            //console.log(data[item]);
-            setTimeout(() => {
-               this.nuevos=this.dataCliente.addClientes(data[item])
-               .map(res=>(console.log(res),
-               this.nuevos=res))
-               
-            }, 2000);
-            this.mostrartablaimportar=true;
-            //console.log(data[item])
-            //this.nuevos=data[item]
-            console.log(this.nuevos)
-         }
+
+         const importardata= confirm('Seguro de inicia exportación de '+(Object.values(data).length)+' registros?')
+         if(importardata){
+           for(let item in data ){
+              //console.log(data[item]);
+              setTimeout(() => {
+                 this.nuevos=this.dataCliente.addClientes(data[item]);
+                 //.map((res:any)=>(console.log(res),
+                 //this.nuevos=res))
+                 
+              }, 1000);
+           
+              //console.log(data[item])
+              //this.nuevos=data[item]
+              //console.log(this.nuevos)
+           }
+           this.mostrartablaimportar=true
+          }
+         
+        
       })
-   } 
-   if(this.irImportar=false){
-         console.log('cerrar importar')
-         this.mostrartablaimportar=false;
-         this.irImportar=true;
-         this.closeImportar=false
+    }if (this.mostrartablaimportar===true){
+      this.mostrartablaimportar=false;
+    }
+
+      
+  // } 
+   //if(this.irImportar=false){
+     //    console.log('cerrar importar')
+       //  this.mostrartablaimportar=false;
+        // this.irImportar=true;
+        // this.closeImportar=false
                
    }
    
- }
+ //}
 
   
    cargarImagenes(){

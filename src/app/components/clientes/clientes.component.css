@@ -54,21 +54,48 @@ input {
 }
 
 .tabla {
-    height: 335px;
+    height: 360px;
     overflow-y: scroll;
     border: 2px solid rgb(218, 213, 213);
-    background-color: rgb(218, 213, 213);
+    /*background-color: rgb(209, 221, 117);*/
     background-image: url('../../../assets/imagen/logotransparencia.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 200px;
     /*width: 250px;*/
-    opacity: 0.80;
+    opacity: 0.95;
+}
+
+.itemfondoini {
+    background-color: rgb(118, 119, 122);
+    color: white;
+}
+
+.itemfondo {
+    background-color: rgb(46, 168, 54);
+    color: white;
+}
+
+.btn-bloque {
+    background-color: rgb(25, 79, 144);
+    color: white
+}
+
+.btn-bloque:hover {
+    color: black;
+    background-color: orange;
+    font-family: cursive
 }
 
 div>ul>a {
     height: 35px;
     font-size: 8px;
+}
+
+div>ul>a:hover {
+    color: black;
+    background-color: rgb(242, 246, 185);
+    font-family: cursive
 }
 
 
@@ -99,4 +126,29 @@ div>ul>a {
 
 .fadeIn {
     animation-name: fadeIn;
+}
+
+@media print {
+    .oculto-impresion,
+    .oculto-impresion * {
+        display: none !important;
+    }
+    .tabla {
+        height: auto;
+        margin: auto;
+        opacity: none;
+        background-color: white;
+        color: black;
+        overflow: hidden;
+        border: none;
+    }
+    .iconosaccion {
+        display: none !important;
+    }
+    form {
+        border: none
+    }
+    table {
+        border: none
+    }
 }

@@ -4,26 +4,28 @@
 
         <div class="container-fluid col-md-3 col-sm-12 ">
             <div class="col-md-12 col-sm-12" style="margin-top:20%;">
-                <ul class="list-group list-group-vertical text-center text-white p-2" style="font-size:15px;cursor:pointer;font-family:cursive;opacity:0.85;background-color: darkgrey;border-radius:5px;">Seleccionar un Servicio:
 
-                    <a class="list-group-item list-group-item-action list-group-item-secondary text-left text-white bg-dark">Nuevo Registro Cliente</a>
-                    <a class="list-group-item list-group-item-action list-group-item-secondary text-left  text-white bg-dark">Importar Data al Servidor</a>
-                    <a class="list-group-item list-group-item-action list-group-item-secondary text-left  text-white bg-dark">Exportar Base de Datos</a>
-
-
+                <ul class="list-group list-group-vertical text-center p-3" style="font-size:16px;cursor:pointer;font-family:cursive;color: white;opacity:0.95;background-color:rgb(25,79,144);border-radius:5px;border:2px outset black;">
+                    Seleccionar un Servicio:
+                    <br>
+                    <br>
+                    <a (click)="newFicha()" class="list-group-item  list-group-item-action text-left itemfondo">Nuevo Registro Cliente</a>
+                    <!--<a (click)="cargajson()"class="list-group-item list-group-item-action list-group-item-secondary text-left  text-black ">Importar Data al Servidor</a>
+                    -->
+                    <a (click)="cargajson()" class="list-group-item list-group-item-action text-left itemfondo">Exportar Base de Datos</a>
                 </ul>
 
             </div>
 
         </div>
-        <div class="col-md-1"></div>
-        <div class="container-fluid col-md-8 col-sm-12 ">
-            <app-addcliente *ngIf="mostrarfichaadd"></app-addcliente>
 
-            <div *ngIf="mostrartablaimportar" class="container-fluid tabla mt-25">
+        <div class=" col-md-9 col-sm-12 ">
+            <app-addcliente *ngIf="mostrarfichaadd"> </app-addcliente>
+
+            <div *ngIf="mostrartablaimportar" class="container-fluid tabla mt-25  animated fast fadeIn">
                 <table>
                     <thead>
-                        <th>#</th>
+                        <th>Items Importados...</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -45,7 +47,9 @@
                         </tr>
                     </tbody>
                 </table>
+
             </div>
+
         </div>
 
     </div>

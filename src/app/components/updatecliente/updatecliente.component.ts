@@ -30,22 +30,35 @@ export class UpdateclienteComponent implements OnInit {
     //this.mostrarservicio
 
   }
-  saveCliente(clienteForm:any):void{
-    console.log(clienteForm)
-    if(clienteForm.uid == undefined){
-      console.log(clienteForm.uid)
-      
-      this.dataCliente.addClientes(clienteForm);
-     
-    }else{
-      
-      
-      this.dataCliente.updateClientes(clienteForm);  
-    }
+  updateCliente(clienteForm:any){
+    
+    //clienteForm.otcargo=clienteForm.otcargo.toUpperCase()
+   
+      const confirmarupdate = confirm('CONFIRMAR CAMBIOS?... en Cliente '+clienteForm.rsocial)
+      if (confirmarupdate){
+        //convierte a mayusculas los valores
+          //clienteForm.rsocial=clienteForm.rsocial.toUpperCase();
+          //clienteForm.accion=clienteForm.accion.toUpperCase();
+          //clienteForm.administrador=clienteForm.administrador.toUpperCase();
+          //clienteForm.apoderada=clienteForm.apoderada.toUpperCase();
+          //clienteForm.direccion=clienteForm.direccion.toUpperCase();
+          //clienteForm.directort=clienteForm.directort.toUpperCase();
+          //clienteForm.distrito=clienteForm.distrito.toUpperCase();
+          //clienteForm.dpto=clienteForm.dpto.toUpperCase();
+          //clienteForm.gcomercial=clienteForm.gcomercial.toUpperCase();
+          //clienteForm.gproduccion=clienteForm.gproduccion.toUpperCase();
+          //clienteForm.jlogistica=clienteForm.jlogistica.toUpperCase();
+          //clienteForm.ncomercial=clienteForm.ncomercial.toUpperCase();
+          //clienteForm.nombre=clienteForm.ncomercial.toUpperCase();
+
+          this.dataCliente.updateClientes(clienteForm); 
+          //window.history.back()
+          this.router.navigate(['/inicio'])  
+    
+      }
     //this.mostrarficha=false;
     //this.mostrarbuscar=true;
-    this.router.navigate(['/inicio'])  
-   
+    //this.router.navigate(['/inicio'])  
   }
 
 }

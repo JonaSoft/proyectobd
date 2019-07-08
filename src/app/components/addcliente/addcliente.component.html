@@ -1,9 +1,9 @@
 <div class="row animated fast fadeIn ">
 
-    <div *ngIf="mostrarficha" class="container-fluid" style="width:100%;height: 300px;">
+    <div *ngIf="mostrarficha" class="container-fluid p-0" style="width:100%;height: 300px;">
 
-        <form name="formCliente" #formCliente="ngForm" (ngSubmit)="saveCliente(formCliente)" class="form-group" style="width:80%;height:auto;">
-            <div class="container p-2" style="background-color:silver;font-family:cursive; font-size:9px;border-radius:15px;width:auto;opacity:0.85;">
+        <form name="formCliente" class="col-md-12" #formCliente="ngForm" (ngSubmit)="saveCliente(formCliente)" class="form-group" style="width:100%;height:auto;">
+            <div class="container" style="background-color:silver;font-family:cursive; font-size:9px;border-radius:15px;width:auto;opacity:0.85;">
                 <div class="row">
                     <div class="container col-md-4 m-2 text-left">
                         <span class="mr-5 text-white" style="font-size:15px">Nuevo Cliente</span>
@@ -22,19 +22,20 @@
                             <label>RUC </label>
                         </div>
                         <div class="col-md-3">
-                            <input type="number" name="ruc" style="width:100%;" [(ngModel)]="this.dataCliente.selectedCliente.ruc">
+                            <input (keyup)="controlRuc($event)" id="ruc" type="number" name="ruc" style="width:80%;" [(ngModel)]="this.dataCliente.selectedCliente.ruc" required>
                         </div>
+                        <div *ngIf="avisoruc" class="col-md-3 text-danger"><span>Max 11 caracteres</span></div>
 
-                        <div class=" col-md-1">
+                        <div class=" col-md-2">
                             <label>Razón Social </label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <input type="input" name="rsocial" style="width:100%;" [(ngModel)]="this.dataCliente.selectedCliente.rsocial">
                         </div>
-                        <div class=" col-md-1">
+                        <div class=" col-md-2">
                             <label>Nombre Comercial  </label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <input type="input" name="nombre" style="width:100%;" [(ngModel)]="this.dataCliente.selectedCliente.nombre">
                         </div>
                     </div>
@@ -47,8 +48,8 @@
                             <input class="inputlarge" type="text" name="estadocon" [(ngModel)]="this.dataCliente.selectedCliente.estadocon">
                         </div>
                         <div class="col-md-4">
-                            <label>Inicio de Actividades </label>
-                            <input class="input" type="input" name="fechaini" [(ngModel)]="this.dataCliente.selectedCliente.fechaini">
+                            <label>Inicio de Activ. </label>
+                            <input class="input" type="date" name="fechaini" [(ngModel)]="this.dataCliente.selectedCliente.fechaini">
                         </div>
                         <div class=" col-md-3">
                             <label>Años Exp. </label>
@@ -205,7 +206,7 @@
                                     <label>Prod. Farmacéuticos  </label>
                                 </div>
                                 <div class="col-md-6 ">
-                                    <input type="number " name="productosfa2020 " [(ngModel)]="this.dataCliente.selectedCliente.productosfa2020 ">
+                                    <input type="number" name="productosfa2020 " [(ngModel)]="this.dataCliente.selectedCliente.productosfa2020 ">
                                 </div>
                             </div>
                             <div class="row ">
@@ -213,7 +214,7 @@
                                     <label>Reactivos de diagnóstico</label>
                                 </div>
                                 <div class="col-md-6 ">
-                                    <input type="number " name="reactivos2020 " [(ngModel)]="this.dataCliente.selectedCliente.reactivos2020 ">
+                                    <input type="number" name="reactivos2020 " [(ngModel)]="this.dataCliente.selectedCliente.reactivos2020 ">
                                 </div>
                             </div>
                             <div class="row ">
@@ -221,7 +222,7 @@
                                     <label>Equipos Médicos y Hosp</label>
                                 </div>
                                 <div class="col-md-6 ">
-                                    <input type="number " name="eqpmed2020 " [(ngModel)]="this.dataCliente.selectedCliente.eqpmed2020 ">
+                                    <input type="number" name="eqpmed2020" [(ngModel)]="this.dataCliente.selectedCliente.eqpmed2020 ">
                                 </div>
                             </div>
                             <div class="row ">
@@ -229,7 +230,7 @@
                                     <label>Productos Orgánicos</label>
                                 </div>
                                 <div class="col-md-6 ">
-                                    <input type="number " name="productosor2020 " [(ngModel)]="this.dataCliente.selectedCliente.productosor2020 ">
+                                    <input type="number" name="productosor2020" [(ngModel)]="this.dataCliente.selectedCliente.productosor2020 ">
                                 </div>
                             </div>
                             <div class="row ">
@@ -237,7 +238,7 @@
                                     <label>Productos de Cosmética</label>
                                 </div>
                                 <div class="col-md-6 ">
-                                    <input type="number " name="productosco2020 " [(ngModel)]="this.dataCliente.selectedCliente.productosco2020 ">
+                                    <input type="number" name="productosco2020" [(ngModel)]="this.dataCliente.selectedCliente.productosco2020 ">
                                 </div>
                             </div>
                         </div>
@@ -334,14 +335,14 @@
                             <label>Fecha Inicial Certificación BPA</label>
                         </div>
                         <div class="col-md-2 ">
-                            <input class="inputform " type="date " name="fechainibpa " [(ngModel)]="this.dataCliente.selectedCliente.fechainibpa ">
+                            <input class="inputform " type="date" name="fechainibpa " [(ngModel)]="this.dataCliente.selectedCliente.fechainibpa ">
                         </div>
                         <div class="col-md-1 "></div>
                         <div class="col-md-3 ">
                             <label>Fecha Final Certificación BPA </label>
                         </div>
                         <div class="col-md-1 ">
-                            <input class="input " type="date " name="fechafinbpa " [(ngModel)]="this.dataCliente.selectedCliente.fechafinbpa ">
+                            <input class="input " type="date" name="fechafinbpa " [(ngModel)]="this.dataCliente.selectedCliente.fechafinbpa ">
                         </div>
                     </div>
                 </div>
@@ -353,14 +354,14 @@
                             <label>Fecha Inicial Certificación BMP</label>
                         </div>
                         <div class="col-md-2 ">
-                            <input class="input " type="date " name="fechainibmp " [(ngModel)]="this.dataCliente.selectedCliente.fechainibmp ">
+                            <input class="input " type="date" name="fechainibmp " [(ngModel)]="this.dataCliente.selectedCliente.fechainibmp ">
                         </div>
                         <div class="col-md-1 "></div>
                         <div class="col-md-3 ">
                             <label>Fecha Final Certificación BMP </label>
                         </div>
                         <div class="col-md-1 ">
-                            <input class="input " type="date " name="fechafinbmp " [(ngModel)]="this.dataCliente.selectedCliente.fechafinbmp ">
+                            <input class="input " type="date" name="fechafinbmp " [(ngModel)]="this.dataCliente.selectedCliente.fechafinbmp ">
                         </div>
                     </div>
                 </div>
@@ -606,14 +607,18 @@
                     </div>
                 </div>
 
-                <div class="container-fluid ">
+                <div class="container-fluid p-2">
                     <div class="row  d-flex justify-content-center">
                         <!--<div  *ngIf="botonnew" class="col-md-3 col-sm-12 ">
                             <button  (click)="nuevoCliente()"type="button" class="btn btn-primary btn-block m-1">Nuevo</button>
                         </div>-->
-                        <div class="col-md-12 col-sm-12 text-center m-auto">
+                        <div class="col-md-6 col-sm-12 text-center m-auto">
                             <button (click)="saveCliente(this.dataCliente.selectedCliente)" type="button" class="btn btn-primary ">Guardar Cambios</button>
                         </div>
+                        <div class="col-md-6 col-sm-12 text-center m-auto">
+                            <button (click)="cerrarFicha()" type="button" class="btn btn-primary ">Cerrar</button>
+                        </div>
+
                         <!--<div class="col-md-3  col-sm-12 ">
                             <button   (click)="updateFicha(this.dataCliente.selectedCliente)" type="button" class="btn btn-warning btn-block m-1">Actualizar</button>
                         </div>

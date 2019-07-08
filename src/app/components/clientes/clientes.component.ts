@@ -7,6 +7,7 @@ import { Router } from  '@angular/router';
 //import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map'
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -32,11 +33,19 @@ export class ClientesComponent implements OnInit {
   public cliente='';
   public matriz=[];
   public result=false;
+ 
   public ficha:ClienteInterface;
   ngOnInit() {
+    
+  }
+  getAllData(){
     this._DataService.enviarData().subscribe(clientes => {
-      console.log(clientes);
+      this.result=false;
+      //console.log(clientes);
       this.clientes=clientes;
+      this.clientes=this.clientes.sort((prev,next)=>{
+        return prev.ruc-next.ruc;
+    });
       this.matriz=clientes;
       console.log(this.clientes.length) 
 
@@ -91,13 +100,17 @@ export class ClientesComponent implements OnInit {
           this.dataFinal.push(data[z])
           //console.log(data.ruc);
           console.log( this.dataFinal);
-          this.clientes=this.dataFinal.sort();
+          this.clientes=this.dataFinal.sort((prev,next)=>{
+            return prev.ruc-next.ruc;
+          });
           //this.dataFinal=[];
         }
         if (valor==data[z].ruc){
           this.dataFinal=[];  
           this.dataFinal.push(data[z]);
-          this.clientes=this.dataFinal.sort();
+          this.clientes=this.dataFinal.sort((prev,next)=>{
+              return prev.ruc-next.ruc;
+          });
         
         }
       }
@@ -141,7 +154,7 @@ export class ClientesComponent implements OnInit {
       if (this.clientes.length==0){
         console.log('Sin registros ');
         this.result=true
-        //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
+        document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
       }
     }
       //console.log(data);
@@ -271,6 +284,10 @@ export class ClientesComponent implements OnInit {
           //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
         }
     //})
+  }
+  enviarPrinter(){
+    console.log("window.print");
+    window.print()
   }
 }
 
