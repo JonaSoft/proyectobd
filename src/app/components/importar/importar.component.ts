@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { DataService } from '../../servicios/data.service';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map'
-
-
-
+import {DataService} from '../../servicios/data.service';
+//import { Dato } from "../../interface/data.interface";
+import { FileItem } from "../../models/file-item";
+import { CargaimagenService } from '../../servicios/cargaimagen.service'
 
 @Component({
   selector: 'app-importar',
@@ -14,59 +14,28 @@ import 'rxjs/add/operator/map'
   styleUrls: ['./importar.component.css']
 })
 export class ImportarComponent implements OnInit {
+  datos=[];
+  flightExport=[];
+  estaSobreElemento=false;
+  archivos: FileItem[] = [];
 
-  constructor(private http:HttpClient,private dataCliente : DataService) {
-    //let http:HttpClient;
-    
-   }
+  constructor(private router:Router,
+              private http:HttpClient,
+              private _dataService1:DataService,
+              private adicionakey:DataService,
+              private _cargaImagenes:CargaimagenService) { }
 
   ngOnInit() {
   }
-  cargajson():void{
-    console.log('LLamar archivo');
-    this.http.get('../../assets/import.json')
-    .subscribe(data=>{
-      console.log(data);
-      for(let item in data ){
-        console.log(data[item]);
-        setTimeout(() => {
-          this.dataCliente.addClientes(data[item]);  
-        }, 2000);
-        
-      }
-    })
 
+  cargarImagenes(){
+    this._cargaImagenes.cargarImagenesFirebase(this.archivos);
+    //console.log("si lee")
   }
-  handleFileSelect(evt:any) {
-    let files = evt.target.files; // FileList object
-
-    // files is a FileList of File objects. List some properties.
-    var output = [];
-    for (var i = 0, f; f = files[i]; i++) {
-      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                  f.size, ' bytes, last modified: ',
-                  f.lastModifiedDate.toLocaleDateString(), '</li>');
-    }
-    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-
-    let reader = new FileReader();
-
-    reader.onload = (function(theFile) {
-      return function(e:any) {
-        // Render thumbnail.
-        let span = document.createElement('span');
-        span.innerHTML = ['<img class="thumb" src="', e.target.result,
-                          '" title="', escape(theFile.name), '"/>'].join('');
-        document.getElementById('list').insertBefore(span, null);
-      };
-    })(f);
-    // Read in the image file as a data URL.
-    console.log(f);
-    reader.readAsDataURL(f);
-
+  limpiarContenido(){
+     this.archivos = []
   }
-
-  //document.getElementById('files').addEventListener('change', handleFileSelect, false);  
-
-
+  pruebaSobreElemento(event){
+     console.log(event);
+  }
 }

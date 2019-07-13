@@ -1,7 +1,7 @@
 .fondomain {
     width: 100%;
-    min-height: 800px;
-    height: auto;
+    min-height: 1200px;
+    height: auto
 }
 
 input {
@@ -16,7 +16,7 @@ input {
 }
 
 input[type=number] {
-    text-align: left
+    text-align: right
 }
 
 input[type=email] {

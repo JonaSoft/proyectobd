@@ -19,6 +19,7 @@ import { APP_ROUTING } from './app.routes';
 //Servicios
 import {AuthService} from './servicios/auth.service';
 import { DataService} from 'src/app/servicios/data.service';
+import { ExporterService}  from 'src/app/servicios/exporter.service';
 import { CargaimagenService} from 'src/app/servicios/cargaimagen.service';
 
 import { AuthGuard} from './guards/auth.guard';
@@ -37,7 +38,8 @@ import { LoadingComponent } from './components/loading/loading.component';
 //import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
 //Guards
 
-
+//Animaciones
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
+    NoopAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
 
   ],
@@ -67,6 +70,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     DataService,
     AuthService,
     CargaimagenService,
+    ExporterService,
     AngularFirestore,
     AuthGuard
    

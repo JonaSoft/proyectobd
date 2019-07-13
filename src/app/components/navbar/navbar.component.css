@@ -1,9 +1,9 @@
-
-a{
+a {
     font-family: cursive;
     color: white;
 }
-a:hover{
-        font-family: cursive;
-        color: rgb(41, 121, 212);
-    }
+
+a:hover {
+    font-family: cursive;
+    color: rgb(25, 79, 144)
+}

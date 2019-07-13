@@ -12,12 +12,11 @@
 }
 
 ul>a {
-    background-color: rgb(238, 237, 182);
-    color: black
+    background-color: white;
+    color: black;
 }
-
 ul>a:hover {
-    background-color: rgba(141, 144, 135, 0.473);
+    background-color: rgb(46, 168, 54);
     color: white
 }
 
@@ -31,10 +30,19 @@ ul>a:hover {
 }
 
 .itemfondo {
-    background-color: rgb(46, 168, 54);
-    color: white;
+    background-color: white;
+    color: black;
 }
-
+.menu{
+    font-size:16px;
+    cursor:pointer;
+    font-family:cursive;
+    color: white;
+    opacity:0.95;
+    /*background-color:rgb(25,79,144);*/
+    border-radius:5px;
+    /*border:2px outset rgb(118, 119, 122);*/
+}
 
 /* Drop Zone */
 

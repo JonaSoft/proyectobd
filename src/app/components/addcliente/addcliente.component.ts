@@ -39,23 +39,12 @@ export class AddclienteComponent implements OnInit {
    
   }
   cerrarFicha():void{
-    //this.mostrarbuscar=true;
-    this.mostrarficha=!(this.mostrarficha);
-    //console.log('this.mostrarficha',this.mostrarficha);
-    //console.log('this.mostrarbuscar',this.mostrarbuscar);
+    this.router.navigate(['/servicios']);
   }
-  //saveCliente(clienteForm:any):void{
-    //console.log(clienteForm.ruc)
-   // this.dataCliente.addClientes(clienteForm);
- // }
-  //updateFicha(clienteForm:any):void{
-    //console.log(cliente)
-    //this.dataCliente.updateClientes(clienteForm);
-  //}
+  
   saveCliente(clienteForm:any){
     
-    //clienteForm.otcargo=clienteForm.otcargo.toUpperCase()
-   
+       
     console.log(clienteForm)
     if(clienteForm.uid == undefined ){
       console.log(clienteForm.uid)

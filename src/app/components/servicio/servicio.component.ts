@@ -48,25 +48,29 @@ export class ServicioComponent implements OnInit {
                }
    mostrarservicio=true;
    mostrarfichaadd:boolean=false;
-   mostrarimportar:boolean=true;
+   mostrarimportar:boolean=false;
    mostrartablaimportar=false;
    ir=true;
    close=false;
    irImportar=true;
    closeImportar=false;
-   public nuevos:any=[]
+   public nuevos:any=[];
+   loading=true;
 
                //public urllink=this.items[0].url;
   ngOnInit() {
   }
    
   newFicha(){
+   //this.mostrarimportar=false;
+   //this.mostrartablaimportar=false;
    //console.log(dataId)
    //this.mostrarservicio=true;
-   this.mostrarfichaadd=!(this.mostrarfichaadd);
-   this.ir=false;
-   this.close=true;
-   console.log(this.mostrarfichaadd);
+   //this.mostrarfichaadd=!(this.mostrarfichaadd);
+   //this.ir=false;
+   //this.close=true;
+   //console.log(this.mostrarfichaadd);
+   this.router.navigate(['/nuevo']);
    this._DataFicha.selectedCliente = ({});
   
  }
@@ -81,7 +85,9 @@ export class ServicioComponent implements OnInit {
    //this.mostrartablaimportar=false
  }
  cargajson(){
-    console.log(this.mostrartablaimportar)
+   this.mostrarimportar=false;
+   this.mostrarfichaadd=false;
+   console.log(this.mostrartablaimportar)
    if(this.mostrartablaimportar===false){
     console.log('LLamar archivo');
      // this.irImportar=false;
@@ -90,7 +96,7 @@ export class ServicioComponent implements OnInit {
       .subscribe(data=>{
          console.log(data);
 
-         const importardata= confirm('Seguro de inicia exportación de '+(Object.values(data).length)+' registros?')
+         const importardata= confirm('Seguro de iniciar exportación de '+(Object.values(data).length)+' registros del archivo subido?')
          if(importardata){
            for(let item in data ){
               //console.log(data[item]);
@@ -128,6 +134,9 @@ export class ServicioComponent implements OnInit {
 
   
    cargarImagenes(){
+     this.mostrarimportar=!this.mostrarimportar;
+     this.mostrarfichaadd=false;
+     this.mostrartablaimportar=false;
      this._cargaImagenes.cargarImagenesFirebase(this.archivos);
      console.log(this.items)
      //console.log("si lee")

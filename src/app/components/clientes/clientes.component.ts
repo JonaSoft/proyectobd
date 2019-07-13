@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteInterface } from '../../models/clienteinterface';
 import { DataService } from '../../servicios/data.service';
+import { ExporterService } from 'src/app/servicios/exporter.service';
 import { Router } from  '@angular/router';
 //import { NgForm } from '@angular/forms';
 //import { ConsoleReporter } from 'jasmine';
 //import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map'
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 
 @Component({
@@ -19,7 +20,8 @@ export class ClientesComponent implements OnInit {
 
   constructor(public _DataService: DataService,
               public _DataFicha: DataService,
-              private router: Router
+              private router: Router,
+              private aExcel: ExporterService
               //public http:HttpClient
               ) {
  
@@ -33,12 +35,15 @@ export class ClientesComponent implements OnInit {
   public cliente='';
   public matriz=[];
   public result=false;
+  loading=false;
+  //soloimpresion=false
  
   public ficha:ClienteInterface;
   ngOnInit() {
     
   }
   getAllData(){
+    this.loading=true;
     this._DataService.enviarData().subscribe(clientes => {
       this.result=false;
       //console.log(clientes);
@@ -46,6 +51,7 @@ export class ClientesComponent implements OnInit {
       this.clientes=this.clientes.sort((prev,next)=>{
         return prev.ruc-next.ruc;
     });
+    this.loading=false;
       this.matriz=clientes;
       console.log(this.clientes.length) 
 
@@ -80,9 +86,9 @@ export class ClientesComponent implements OnInit {
   }
   newFicha(dataId:string,cliente:ClienteInterface):void{
     console.log(dataId)
-    this.mostrarbuscar=false;
-    this.mostrarficha=true;
-    
+    //this.mostrarbuscar=false;
+    //this.mostrarficha=true;
+    this.router.navigate(['/nuevo']);
     this._DataFicha.selectedCliente = ({});
     this._DataFicha.newFicha(dataId,cliente);
 
@@ -93,6 +99,7 @@ export class ClientesComponent implements OnInit {
     this.dataFinal=[];
     let valor = event.target.value;  
     console.log(valor);
+    this.loading=true;
     this._DataService.solicitaData(valor).subscribe(data=>{
       for(let z in data){
         console.log(data[z].ruc)
@@ -125,6 +132,7 @@ export class ClientesComponent implements OnInit {
   }
   buscaRuc1(event:any){
     //this.clientes=[];
+    this.loading=true
     this.result=false;
     this.dataFinal=[];
     let valor = event.target.value;  
@@ -133,6 +141,7 @@ export class ClientesComponent implements OnInit {
     let data=[];
     data=this.matriz
     if(valor.length>3){
+      
       for(let z in data){
           console.log(data[z].ruc)
         
@@ -140,12 +149,14 @@ export class ClientesComponent implements OnInit {
             this.dataFinal.push(data[z])
             //console.log(data.ruc);
             //console.log( this.dataFinal);
+            this.loading=false;
             this.clientes=this.dataFinal.reverse();
             //this.dataFinal=[];
           }
           if (valor==data[z].ruc){
             this.dataFinal=[];  
             this.dataFinal.push(data[z]);
+            this.loading=false;
             this.clientes=this.dataFinal.reverse();
           
           }
@@ -162,6 +173,7 @@ export class ClientesComponent implements OnInit {
     //})
   }
   buscaRsocial(valor:string){
+    this.loading=true
     //this.clientes=[];
     this.result=false;
     this.dataFinal=[];
@@ -180,12 +192,14 @@ export class ClientesComponent implements OnInit {
           this.dataFinal.push(data[z])
           //console.log(data.ruc);
           console.log( this.dataFinal);
+          this.loading=false;
           this.clientes=this.dataFinal.reverse();
           //this.dataFinal=[];
         }
         if (valor==data[z].rsocial){
           this.dataFinal=[];  
           this.dataFinal.push(data[z]);
+          this.loading=false;
           this.clientes=this.dataFinal.reverse();
           //this.dataFinal=[];
         }
@@ -202,7 +216,8 @@ export class ClientesComponent implements OnInit {
       //this.clientes=this.dataFinal;
     //})
   }
-  buscaStatus(valor?:string){
+  buscaStatus(valor?:any){
+    this.loading=true
     this.result=false;
     //let valor:null = event.target.value;  
     valor = valor.toUpperCase();
@@ -217,13 +232,15 @@ export class ClientesComponent implements OnInit {
     //console.log(data)
     data=this.clientes;
       for(let item in data){
-        if(data[item].status==valor){
+        if(valor==data[item].status){
             this.dataFinal.push(data[item]);
+            this.loading=false;
             this.clientes=this.dataFinal.sort();
         }
       }
       if (this.clientes.length==0){
-        console.log('Sin registros ');
+        //console.log('Sin registros ');
+        this.loading=false;
         this.result=true
         //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
       }
@@ -231,10 +248,11 @@ export class ClientesComponent implements OnInit {
   }
   buscaStatus1(valor?:any){
     //this.clientes=[];
+    this.loading=true
     this.result=false;
     this.dataFinal=[];
     //let valor:null = event.target.value;  
-    valor = valor.toUpperCase();
+    //valor = valor.toUpperCase();
     console.log(valor);
     //this._DataService.solicitaData().subscribe(data=>{
       //this.dataFinal=[];
@@ -243,24 +261,31 @@ export class ClientesComponent implements OnInit {
       //this._DataService.solicitaData(valor).subscribe(data=>{
       let data=[];  
       //console.log(data)
+      console.log(this.matriz);
       data=this.matriz;
       for(let item in data){
-        if(data[item].status==valor){
-          console.log(data[item].status)
+        console.log('valor data'+data[item].status);
+        console.log('valor enviado '+valor);
+        //((data[z].rsocial).includes(valor))
+        if(data[item].status.includes(valor)){
+          console.log('entro comparacion '+data[item].status)
             this.dataFinal.push(data[item]);
+            this.loading=false;
             this.clientes=this.dataFinal.sort();
         }
       }
       console.log(this.dataFinal.length)
       if (this.dataFinal.length==0){
         this.clientes=[];
-        console.log('Sin registros ');
+        //console.log('Sin registros ');
+        this.loading=false;
         this.result=true
         //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
       } 
     //})
   }
   buscaResponsable(valor?:any){
+    this.loading=true;
     this.result=false;
     this.clientes=[];
     this.dataFinal=[];
@@ -271,8 +296,10 @@ export class ClientesComponent implements OnInit {
     data=this.matriz;
     //this._DataService.solicitaData().subscribe(data=>{
       for(let item in data){
-        if(data[item].responsable==valor){
+        //((data[z].rsocial).includes(valor))
+        if(data[item].responsable.includes(valor)){
             this.dataFinal.push(data[item]);
+            this.loading=false;
             this.clientes=this.dataFinal.sort();
         }
         
@@ -280,6 +307,7 @@ export class ClientesComponent implements OnInit {
       console.log(this.clientes.length);
         if (this.clientes.length==0){
           console.log('Sin registros ');
+          this.loading=false;
           this.result=true
           //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
         }
@@ -288,6 +316,9 @@ export class ClientesComponent implements OnInit {
   enviarPrinter(){
     console.log("window.print");
     window.print()
+  }
+  crearExcel():void{
+   this.aExcel.exportarExcel(this.clientes,'descarga excel')
   }
 }
 

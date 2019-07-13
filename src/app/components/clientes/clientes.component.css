@@ -31,15 +31,18 @@
 
 th {
     text-align: center;
-    height: 7px;
+    height: auto;
+    width: auto;
     color: white;
     font-family: cursive;
 }
 
 td {
-    height: 8px;
+    height: auto;
+    width: auto;
     text-align: center;
     font-size: 9px;
+    /* background-color: rgb(242, 246, 185);*/
 }
 
 input {
@@ -54,16 +57,22 @@ input {
 }
 
 .tabla {
-    height: 360px;
+    height: 350px;
     overflow-y: scroll;
-    border: 2px solid rgb(218, 213, 213);
+    /*border: 2px solid rgb(218, 213, 213);*/
     /*background-color: rgb(209, 221, 117);*/
+    /*background-color:rgb(242, 246, 185);*/
     background-image: url('../../../assets/imagen/logotransparencia.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 200px;
     /*width: 250px;*/
-    opacity: 0.95;
+    opacity: 0.85;
+}
+
+.tablaprinter {
+    height: auto;
+    width: auto;
 }
 
 .itemfondoini {
@@ -76,14 +85,20 @@ input {
     color: white;
 }
 
+.iconosaccion {
+    cursor: pointer
+}
+
 .btn-bloque {
-    background-color: rgb(25, 79, 144);
-    color: white
+    background-color: rgb(46, 168, 54);
+    color: white;
+    margin: auto;
+    padding: 0
 }
 
 .btn-bloque:hover {
     color: black;
-    background-color: orange;
+    background-color: rgb(242, 246, 185);
     font-family: cursive
 }
 
@@ -136,6 +151,8 @@ div>ul>a:hover {
     .tabla {
         height: auto;
         margin: auto;
+        width: auto;
+        margin-top: 5px;
         opacity: none;
         background-color: white;
         color: black;
