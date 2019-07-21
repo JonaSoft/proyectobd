@@ -19,12 +19,13 @@ export class AuthService {
     return new Promise((resolve,reject) => {
        this.afAuth.auth.signInWithEmailAndPassword(email,pass)
        .then( userData => {resolve(userData);
-                           //console.log(userData.user.email)
+                           console.log(userData.user.email)
                           },
         err => reject (err));
     });
  }
  logoutAuth(){
+   console.log('Salio')
     return this.afAuth.auth.signOut();
  }
 

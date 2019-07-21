@@ -4,7 +4,7 @@
 
 .titulo {
     color: white;
-    font-family: cursive;
+    font-family: tahoma;
 }
 
 .card:hover {
@@ -36,7 +36,7 @@ ul>a:hover {
 .menu{
     font-size:16px;
     cursor:pointer;
-    font-family:cursive;
+    font-family:tahoma;
     color: white;
     opacity:0.95;
     /*background-color:rgb(25,79,144);*/

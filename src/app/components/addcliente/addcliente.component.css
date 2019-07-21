@@ -1,6 +1,6 @@
 .fondomain {
     width: 100%;
-    min-height: 1200px;
+    min-height: 1500px;
     height: auto
 }
 
@@ -24,7 +24,7 @@ input[type=date] {
 }
 
 input[type=number] {
-    text-align: right
+    text-align: left
 }
 
 .inputextralarge {
@@ -56,14 +56,19 @@ option {
 
 .input-group-text {
     font-size: 10px;
-    font-family: cursive;
+    font-family: tahoma;
     height: 25px;
 }
 
 .controlaccion {
     height: 22px
 }
-
+.botonguardar{
+    background-color: rgb(46, 168, 54);
+}
+.fondotitulo{
+    background-color:rgb(25, 79, 144);
+}
 .subtitulo {
     /*background-color: #848484;*/
     height: 30px;

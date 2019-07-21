@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from  '@angular/router';
 import { AuthService } from '../../servicios/auth.service'
-import { preserveWhitespacesDefault } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-navbar',

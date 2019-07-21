@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { environment } from '../environments/environment';
-import { AngularFireModule} from  '@angular/fire';
+
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule} from  '@angular/fire';
+import { environment } from '../environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -34,7 +35,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ImportarComponent } from './components/importar/importar.component';
 import { UpdateclienteComponent } from './components/updatecliente/updatecliente.component';
 import { LoadingComponent } from './components/loading/loading.component';
-
+//import { KeysPipe } from './pipes/keys.pipe';
 //import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
 //Guards
 

@@ -22,20 +22,36 @@ export class ClientesComponent implements OnInit {
               public _DataFicha: DataService,
               private router: Router,
               private aExcel: ExporterService
-              //public http:HttpClient
               ) {
  
   }
   mostrarbuscar=true;
   mostrarficha=false;
-  //botonsave=false;
-  //botonnew=false;
   public clientes = [];
   public dataFinal=[];
+  public dataFiltro=[];
   public cliente='';
   public matriz=[];
   public result=false;
-  loading=false;
+  public cantidad:number=0;
+  public loading=false;
+  public contador=false;
+  //filtros status y responsable
+  banderafiltros:boolean=false;
+  seleccionfiltro:string = "itemfondoini";
+  seleccionfiltro2:string = "itemfondoini2";
+  seleccionfiltro3:string = "itemfondoini3";
+  seleccionfiltro4:string = "itemfondoini4";
+  seleccionfiltro5:string = "itemfondoini5";
+  seleccionfiltro6:string = "itemfondoini6";
+  seleccionfiltro7:string = "itemfondoini7";
+  seleccionfiltro8:string = "itemfondoini8";
+  estadoactivo: boolean = true;
+
+  //*************************/
+
+
+  
   //soloimpresion=false
  
   public ficha:ClienteInterface;
@@ -43,17 +59,34 @@ export class ClientesComponent implements OnInit {
     
   }
   getAllData(){
+    //this.seleccionfiltro="itemfondoini";
+    this.banderafiltros=false
+    this.result=false;
+    this.contador=false;
     this.loading=true;
+    this.seleccionfiltro = "itemfondoini";
+    this.seleccionfiltro2 = "itemfondoini2";
+    this.seleccionfiltro3 = "itemfondoini3";
+    this.seleccionfiltro4 = "itemfondoini4";
+    this.seleccionfiltro5 = "itemfondoini5";
+    this.seleccionfiltro6 = "itemfondoini6";
+    this.seleccionfiltro7 = "itemfondoini7";
+    this.seleccionfiltro8 = "itemfondoini8";
+
     this._DataService.enviarData().subscribe(clientes => {
-      this.result=false;
+    
       //console.log(clientes);
       this.clientes=clientes;
+      this.cantidad=this.clientes.length
+      this.contador=true;
       this.clientes=this.clientes.sort((prev,next)=>{
-        return prev.ruc-next.ruc;
+      return prev.ruc-next.ruc;
     });
     this.loading=false;
-      this.matriz=clientes;
-      console.log(this.clientes.length) 
+    this.contador=true;
+    this.matriz=clientes;
+      //this.dataFiltro=this.
+      //console.log(this.clientes.length) 
 
     })
   }
@@ -194,6 +227,7 @@ export class ClientesComponent implements OnInit {
           console.log( this.dataFinal);
           this.loading=false;
           this.clientes=this.dataFinal.reverse();
+          this.contador=true
           //this.dataFinal=[];
         }
         if (valor==data[z].rsocial){
@@ -201,12 +235,14 @@ export class ClientesComponent implements OnInit {
           this.dataFinal.push(data[z]);
           this.loading=false;
           this.clientes=this.dataFinal.reverse();
+          this.contador=true
           //this.dataFinal=[];
         }
        
       }
       if (this.clientes.length==0){
         console.log('Sin registros ');
+        this.contador=false;
         this.result=true
         //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
       }
@@ -216,103 +252,436 @@ export class ClientesComponent implements OnInit {
       //this.clientes=this.dataFinal;
     //})
   }
-  buscaStatus(valor?:any){
+ 
+buscaStatus1(valor?:any){
+    if (this.seleccionfiltro == "itemfondoini"){
+        this.seleccionfiltro = "itemfondo"
+        this.seleccionfiltro2 = "itemfondoini2";
+        this.seleccionfiltro3 = "itemfondoini3"
+        this.seleccionfiltro4 = "itemfondoini4";
+        this.seleccionfiltro5 = "itemfondoini5";
+        this.seleccionfiltro6 = "itemfondoini6"
+        this.seleccionfiltro7 = "itemfondoini7";
+        this.seleccionfiltro8 = "itemfondoini8"
+    }
+   
+    this.estadoactivo = !this.estadoactivo; 
+    this.banderafiltros=true;
     this.loading=true
     this.result=false;
-    //let valor:null = event.target.value;  
-    valor = valor.toUpperCase();
-    console.log(valor);
-    //this._DataService.solicitaData().subscribe(data=>{
-      //this.clientes=[];
     this.dataFinal=[];
-    //valor = event.target.value;  
+    this.dataFiltro=[];
     console.log(valor);
-    //this._DataService.solicitaData(valor).subscribe(data=>{
     let data=[];  
-    //console.log(data)
-    data=this.clientes;
-      for(let item in data){
-        if(valor==data[item].status){
-            this.dataFinal.push(data[item]);
-            this.loading=false;
-            this.clientes=this.dataFinal.sort();
-        }
-      }
-      if (this.clientes.length==0){
-        //console.log('Sin registros ');
-        this.loading=false;
-        this.result=true
-        //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
-      }
-    //})
-  }
-  buscaStatus1(valor?:any){
-    //this.clientes=[];
-    this.loading=true
-    this.result=false;
-    this.dataFinal=[];
-    //let valor:null = event.target.value;  
-    //valor = valor.toUpperCase();
-    console.log(valor);
-    //this._DataService.solicitaData().subscribe(data=>{
-      //this.dataFinal=[];
-      //valor = event.target.value;  
-      //console.log(valor);
-      //this._DataService.solicitaData(valor).subscribe(data=>{
-      let data=[];  
-      //console.log(data)
-      console.log(this.matriz);
       data=this.matriz;
       for(let item in data){
-        console.log('valor data'+data[item].status);
-        console.log('valor enviado '+valor);
-        //((data[z].rsocial).includes(valor))
-        if(data[item].status.includes(valor)){
-          console.log('entro comparacion '+data[item].status)
+        if(valor.includes(data[item].status)){
             this.dataFinal.push(data[item]);
-            this.loading=false;
+          
             this.clientes=this.dataFinal.sort();
+            this.dataFiltro=this.clientes;
+            this.contador=true;
         }
       }
       console.log(this.dataFinal.length)
       if (this.dataFinal.length==0){
         this.clientes=[];
-        //console.log('Sin registros ');
+        this.contador=false;
         this.loading=false;
         this.result=true
-        //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
       } 
-    //})
+    this.cantidad = this.clientes.length
+    console.log(this.cantidad)
+    this.loading=false;
+}
+
+buscaStatus2(valor?:any){
+  
+  if (this.seleccionfiltro2 == "itemfondoini2"){
+    console.log('2 btn')
+    this.seleccionfiltro2 = "itemfondo2";
+    this.seleccionfiltro = "itemfondoini";
+    //this.seleccionfiltro2 = "itemfondoini2";
+    this.seleccionfiltro3 = "itemfondoini3"
+    this.seleccionfiltro4 = "itemfondoini4";
+    this.seleccionfiltro5 = "itemfondoini5";
+    this.seleccionfiltro6 = "itemfondoini6"
+    this.seleccionfiltro7 = "itemfondoini7";
+    this.seleccionfiltro8 = "itemfondoini8"
   }
-  buscaResponsable(valor?:any){
-    this.loading=true;
-    this.result=false;
+ 
+  this.estadoactivo = !this.estadoactivo; 
+  this.banderafiltros=true;
+  this.loading=true
+  this.result=false;
+  this.dataFinal=[];
+  this.dataFiltro=[];
+  console.log(valor);
+  let data=[];  
+    data=this.matriz;
+    for(let item in data){
+      if(valor.includes(data[item].status)){
+          this.dataFinal.push(data[item]);
+        
+          this.clientes=this.dataFinal.sort();
+          this.dataFiltro=this.clientes;
+          this.contador=true;
+      }
+    }
+    console.log(this.dataFinal.length)
+    if (this.dataFinal.length==0){
+      this.clientes=[];
+      this.contador=false;
+      this.loading=false;
+      this.result=true
+    } 
+  this.cantidad = this.clientes.length
+  console.log(this.cantidad)
+  this.loading=false;
+}
+buscaStatus3(valor?:any){
+  
+  if (this.seleccionfiltro3 == "itemfondoini3"){
+    this.seleccionfiltro3 = "itemfondo";
+    this.seleccionfiltro = "itemfondoini";
+    this.seleccionfiltro2 = "itemfondoini2";
+    //this.seleccionfiltro3 = "itemfondoini3"
+    this.seleccionfiltro4 = "itemfondoini4";
+    this.seleccionfiltro5 = "itemfondoini5";
+    this.seleccionfiltro6 = "itemfondoini6"
+    this.seleccionfiltro7 = "itemfondoini7";
+    this.seleccionfiltro8 = "itemfondoini8"
+  }
+ 
+  this.estadoactivo = !this.estadoactivo; 
+  this.banderafiltros=true;
+  this.loading=true
+  this.result=false;
+  this.dataFinal=[];
+  this.dataFiltro=[];
+  console.log(valor);
+  let data=[];  
+    data=this.matriz;
+    for(let item in data){
+      if(valor.includes(data[item].status)){
+          this.dataFinal.push(data[item]);
+        
+          this.clientes=this.dataFinal.sort();
+          this.dataFiltro=this.clientes;
+          this.contador=true;
+      }
+    }
+    console.log(this.dataFinal.length)
+    if (this.dataFinal.length==0){
+      this.clientes=[];
+      this.contador=false;
+      this.loading=false;
+      this.result=true
+    } 
+  this.cantidad = this.clientes.length
+  console.log(this.cantidad)
+  this.loading=false;
+}
+
+buscaStatus4(valor?:any){
+  
+  if (this.seleccionfiltro4 == "itemfondoini4"){
+    this.seleccionfiltro4 = "itemfondo4";
+    this.seleccionfiltro = "itemfondoini";
+    this.seleccionfiltro2 = "itemfondoini2";
+    this.seleccionfiltro3 = "itemfondoini3"
+    this.seleccionfiltro5 = "itemfondoini5";
+    this.seleccionfiltro6 = "itemfondoini6"
+    this.seleccionfiltro7 = "itemfondoini7";
+    this.seleccionfiltro8 = "itemfondoini8"
+  }
+ 
+  this.estadoactivo = !this.estadoactivo; 
+  this.banderafiltros=true;
+  this.loading=true
+  this.result=false;
+  this.dataFinal=[];
+  this.dataFiltro=[];
+  console.log(valor);
+  let data=[];  
+    data=this.matriz;
+    for(let item in data){
+      if(valor.includes(data[item].status)){
+          this.dataFinal.push(data[item]);
+        
+          this.clientes=this.dataFinal.sort();
+          this.dataFiltro=this.clientes;
+          this.contador=true;
+      }
+    }
+    console.log(this.dataFinal.length)
+    if (this.dataFinal.length==0){
+      this.clientes=[];
+      this.contador=false;
+      this.loading=false;
+      this.result=true
+    } 
+  this.cantidad = this.clientes.length
+  console.log(this.cantidad)
+  this.loading=false;
+}
+buscaStatus5(valor?:any){
+  
+  if (this.seleccionfiltro5 == "itemfondoini5"){
+    this.seleccionfiltro5 = "itemfondo5";
+    this.seleccionfiltro = "itemfondoini";
+    this.seleccionfiltro2 = "itemfondoini2";
+    this.seleccionfiltro3 = "itemfondoini3";
+    this.seleccionfiltro4 = "itemfondoini4";
+    this.seleccionfiltro6 = "itemfondoini6"
+    this.seleccionfiltro7 = "itemfondoini7";
+    this.seleccionfiltro8 = "itemfondoini8"
+  }
+ 
+  this.estadoactivo = !this.estadoactivo; 
+  this.banderafiltros=true;
+  this.loading=true
+  this.result=false;
+  this.dataFinal=[];
+  this.dataFiltro=[];
+  console.log(valor);
+  let data=[];  
+    data=this.matriz;
+    for(let item in data){
+      if(valor.includes(data[item].status)){
+          this.dataFinal.push(data[item]);
+        
+          this.clientes=this.dataFinal.sort();
+          this.dataFiltro=this.clientes;
+          this.contador=true;
+      }
+    }
+    console.log(this.dataFinal.length)
+    if (this.dataFinal.length==0){
+      this.clientes=[];
+      this.contador=false;
+      this.loading=false;
+      this.result=true
+    } 
+  this.cantidad = this.clientes.length
+  console.log(this.cantidad)
+  this.loading=false;
+}
+
+buscaStatus6(valor?:any){
+  
+  if (this.seleccionfiltro6 == "itemfondoini6"){
+    this.seleccionfiltro6 = "itemfondo6";
+    this.seleccionfiltro = "itemfondoini";
+    this.seleccionfiltro2 = "itemfondoini2";
+    this.seleccionfiltro3 = "itemfondoini3";
+    this.seleccionfiltro4 = "itemfondoini4";
+    this.seleccionfiltro5 = "itemfondoini5";
+    this.seleccionfiltro7 = "itemfondoini7";
+    this.seleccionfiltro8 = "itemfondoini8";
+    
+
+  }
+ 
+  this.estadoactivo = !this.estadoactivo; 
+  this.banderafiltros=true;
+  this.loading=true
+  this.result=false;
+  this.dataFinal=[];
+  this.dataFiltro=[];
+  console.log(valor);
+  let data=[];  
+    data=this.matriz;
+    for(let item in data){
+      if(valor.includes(data[item].status)){
+          this.dataFinal.push(data[item]);
+        
+          this.clientes=this.dataFinal.sort();
+          this.dataFiltro=this.clientes;
+          this.contador=true;
+      }
+    }
+    console.log(this.dataFinal.length)
+    if (this.dataFinal.length==0){
+      this.clientes=[];
+      this.contador=false;
+      this.loading=false;
+      this.result=true
+    } 
+  this.cantidad = this.clientes.length
+  console.log(this.cantidad)
+  this.loading=false;
+}
+
+buscaStatus7(valor?:any){
+  
+  if (this.seleccionfiltro7 == "itemfondoini7"){
+    this.seleccionfiltro7 = "itemfondo7";
+    this.seleccionfiltro = "itemfondoini";
+    this.seleccionfiltro2 = "itemfondoini2";
+    this.seleccionfiltro3 = "itemfondoini3";
+    this.seleccionfiltro4 = "itemfondoini4";
+    this.seleccionfiltro5 = "itemfondoini5";
+    this.seleccionfiltro6 = "itemfondoini6";
+    //this.seleccionfiltro7 = "itemfondoini7";
+    this.seleccionfiltro8 = "itemfondoini8";
+  
+  }
+ 
+  this.estadoactivo = !this.estadoactivo; 
+  this.banderafiltros=true;
+  this.loading=true
+  this.result=false;
+  this.dataFinal=[];
+  this.dataFiltro=[];
+  console.log(valor);
+  let data=[];  
+    data=this.matriz;
+    for(let item in data){
+      if(valor.includes(data[item].status)){
+          this.dataFinal.push(data[item]);
+        
+          this.clientes=this.dataFinal.sort();
+          this.dataFiltro=this.clientes;
+          this.contador=true;
+      }
+    }
+    console.log(this.dataFinal.length)
+    if (this.dataFinal.length==0){
+      this.clientes=[];
+      this.contador=false;
+      this.loading=false;
+      this.result=true
+    } 
+  this.cantidad = this.clientes.length
+  console.log(this.cantidad)
+  this.loading=false;
+}
+
+buscaStatus8(valor?:any){
+  
+  if (this.seleccionfiltro8 == "itemfondoini8"){
+    this.seleccionfiltro8 = "itemfondo8";
+    this.seleccionfiltro = "itemfondoini";
+    this.seleccionfiltro2 = "itemfondoini2";
+    this.seleccionfiltro3 = "itemfondoini3";
+    this.seleccionfiltro4 = "itemfondoini4";
+    this.seleccionfiltro5 = "itemfondoini5";
+    this.seleccionfiltro6 = "itemfondoini6";
+    this.seleccionfiltro7 = "itemfondoini7";
+    
+  }
+ 
+
+  this.banderafiltros=true;
+  
+  this.loading=true
+  this.result=false;
+  this.dataFinal=[];
+  this.dataFiltro=[];
+  console.log(valor);
+  let data=[];  
+    data=this.matriz;
+    for(let item in data){
+      if(valor.includes(data[item].status)){
+          this.dataFinal.push(data[item]);
+        
+          this.clientes=this.dataFinal.sort();
+          this.dataFiltro=this.clientes;
+          this.contador=true;
+      }
+    }
+    console.log(this.dataFinal.length)
+    if (this.dataFinal.length==0){
+      this.clientes=[];
+      this.contador=false;
+      this.loading=false;
+      this.result=true
+    } 
+  this.cantidad = this.clientes.length
+  console.log(this.cantidad)
+  this.loading=false;
+  this.banderafiltros=true
+}
+
+buscaResponsable(valor?:any){
+  this.loading=true;
+  this.result=false;
+  if (this.banderafiltros===true){
+    valor = valor.toUpperCase();
+    //let datafiltro=[]; 
+    this.dataFinal=[] 
+    //this.dataFiltro=this.dataFinal;
+    console.log('banderafiltros es '+ this.banderafiltros)
+    //this.dataFiltro=this.clientes;
+    console.log(valor);
+    for(let item in this.dataFiltro){
+        //console.log(this.dataFiltro[item])
+          if(valor==this.dataFiltro[item].responsable){
+             console.log('paso filtro responsable')
+              this.dataFinal.push(this.dataFiltro[item]);
+              console.log(this.dataFinal.length)
+              //this.clientes=this.dataFinal;
+             this.cantidad = this.dataFinal.length
+              console.log(this.cantidad)
+              this.loading=false;
+              this.contador=true;
+              this.result=false  
+             
+          }
+          if(this.dataFinal.length==0){
+            //console.log('paso')
+            this.contador=false;
+            this.loading=false;
+            this.result=true 
+            //return  
+            
+          }
+      
+    }
+    this.clientes=this.dataFinal;
+    this.loading=false;
+    console.log(this.clientes.length);
+    //sin resultados
+    if (this.clientes.length==0){
+        console.log('Sin registros ');
+        this.loading=false;
+        this.contador=false;
+        this.result=true
+    }
+  }else{
+
     this.clientes=[];
-    this.dataFinal=[];
+    //this.dataFinal=[];
     //let valor:null = event.target.value;  
     valor = valor.toUpperCase();
-    console.log(valor);
+    //console.log(valor);
     let data=[];  
     data=this.matriz;
     //this._DataService.solicitaData().subscribe(data=>{
-      for(let item in data){
+    for(let item in data){
         //((data[z].rsocial).includes(valor))
-        if(data[item].responsable.includes(valor)){
+        if(valor.includes(data[item].responsable)){
             this.dataFinal.push(data[item]);
             this.loading=false;
             this.clientes=this.dataFinal.sort();
+            this.cantidad = this.clientes.length
+            this.contador=true;
+            //console.log(this.cantidad)
         }
-        
-      }
-      console.log(this.clientes.length);
-        if (this.clientes.length==0){
-          console.log('Sin registros ');
-          this.loading=false;
-          this.result=true
-          //document.getElementById('result').textContent="SIN COINCIDENCIAS PARA SU BUSQUEDA"
-        }
-    //})
+          
+    }
+    console.log(this.clientes.length);
+    this.cantidad = this.clientes.length
+    if (this.clientes.length==0){
+        console.log('Sin registros ');
+        this.loading=false;
+        this.contador=false;
+        this.result=true
+    }
   }
+  //this.banderafiltros=false
+}
   enviarPrinter(){
     console.log("window.print");
     window.print()

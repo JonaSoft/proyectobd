@@ -1,157 +1,161 @@
-<div *ngIf="mostrarficha" class=" fondomain container-fluid p-0" style="width:100%;height: 300px;">
+<div *ngIf="mostrarficha" class=" fondomain container-fluid" style="width:100%;height: auto;min-height: 1500px;">
 
-    <form name="formCliente" class="col-md-12" #formCliente="ngForm" (ngSubmit)="saveCliente(formCliente)" class="form-group" style="width:100%;height:auto;">
-        <div class="container" style="background-color:silver;font-family:cursive; font-size:9px;border-radius:15px;width:auto;opacity:0.85;">
-            <div class="row">
-                <div class="container col-md-4 m-2 text-left">
-                    <span class="mr-5 text-white" style="font-size:15px">Nuevo Cliente</span>
+    <form name="formCliente" class="col-md-12" #formCliente="ngForm" (ngSubmit)="saveCliente(formCliente)" class="form-group" style="width:100%;min-height:1500px;height:auto;">
+        <div class="container" style="background-color:white;font-family:tahoma; font-size:9px;border-radius:15px;width:auto;">
+                <div class="col-md-12  m-2 text-white text-center ">
+                    <span class="p-2 fondotitulo bordes" style="font-size:18px;">Nueva Ficha Cliente</span>
                 </div>
-                <div class="container col-md-6 mt-2 text-right">
-                    <span class="mr-5" style="font-size:15px">Ficha Cliente</span>
-                    <input type="text" name="uid" class="input-form w-25 text-right" style="background-color:silver;color:silver;" disabled [(ngModel)]="this.dataCliente.selectedCliente.uid">
-
-                </div>
-            </div>
+                    <input type="text" name="uid" class="input-form w-25 text-left" style="background-color:white;color:white;" disabled [(ngModel)]="this.dataCliente.selectedCliente.uid">
 
 
             <div class="container">
-                <div class="row">
-                    <div class="col-md-1">
-                        <label>RUC </label>
-                    </div>
-                    <div class="col-md-3">
-                        <input (keyup)="controlRuc($event)" id="ruc" type="number" name="ruc" style="width:80%;" [(ngModel)]="this.dataCliente.selectedCliente.ruc" required>
-                    </div>
-                    <div *ngIf="avisoruc" class="col-md-3 text-danger"><span>Max 11 caracteres</span></div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label>RUC </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="ruc" style="width:100%;" [(ngModel)]="this.dataCliente.selectedCliente.ruc">
+                        </div>
 
-                    <div class=" col-md-2">
-                        <label>Razón Social </label>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="input" name="rsocial" style="width:100%;" [(ngModel)]="this.dataCliente.selectedCliente.rsocial">
-                    </div>
-                    <div class=" col-md-2">
-                        <label>Nombre Comercial  </label>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="input" name="nombre" style="width:100%;" [(ngModel)]="this.dataCliente.selectedCliente.nombre">
+                        <div class=" col-md-1">
+                            <label>Razón Social </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="input" name="rsocial" style="width:100%;" [(ngModel)]="this.dataCliente.selectedCliente.rsocial">
+                        </div>
+                        <div class=" col-md-1">
+                            <label>N.Comercial  </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="input" name="nombre" style="width:100%;" [(ngModel)]="this.dataCliente.selectedCliente.nombre">
+                        </div>
                     </div>
                 </div>
-            </div>
 
             <div class="container">
-                <div class="row">
-                    <div class=" col-md-5">
-                        <label>Estado Contrib.</label>
-                        <input class="inputlarge" type="text" name="estadocon" [(ngModel)]="this.dataCliente.selectedCliente.estadocon">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Estado Contrib.</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input class="inputlarge" type="text" name="estadocon" [(ngModel)]="this.dataCliente.selectedCliente.estadocon">
+                        </div>
+                        <div class="col-md-2">
+                            <label>Inicio Actividades </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input class="input" type="input" name="fechaini" [(ngModel)]="this.dataCliente.selectedCliente.fechaini">
+                        </div>
+                        <div class=" col-md-2">
+                            <label>Años Exp. </label>
+                            <input class="inputsmall" type="text" name="aniosexp" min="0" max="99" placeholder="0" [(ngModel)]="this.dataCliente.selectedCliente.aniosexp">
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <label>Inicio de Activ. </label>
-                        <input class="input" type="date" name="fechaini" [(ngModel)]="this.dataCliente.selectedCliente.fechaini">
-                    </div>
-                    <div class=" col-md-3">
-                        <label>Años Exp. </label>
-                        <input class="inputsmall" type="number" name="aniosexp" placeholder="0" [(ngModel)]="this.dataCliente.selectedCliente.aniosexp">
-                    </div>
-                </div>
             </div>
             <div class="container">
                 <div class="row" style="overflow-y: scroll;height:100px;">
                     <div class=" col-md-6  col-sm-12">
 
-                        <div class="container  text-center bg-dark text-white bordes">
-                            <span class="subtitulo">Facturación 2017</span>
-                        </div>
-
+                            <div class="container  text-center text-white fondotitulo bordes">
+                                <span class="subtitulo">Facturación 2017</span>
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <label>Facturación  </label>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <input type="text" name="facturacion2017" [(ngModel)]="this.dataCliente.selectedCliente.facturacion2017">
+                                    </div>
+                                </div>
                         <div class="row">
-                            <div class="col-md-6">
+                                <div class="col-md-6 col-sm-12">
                                 <label>Prod. Farmacéuticos  </label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-12">
                                 <input type="number" name="productosfa2017" [(ngModel)]="this.dataCliente.selectedCliente.productosfa2017">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-12">
                                 <label>Reactivos de diagnóstico</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-12">
                                 <input type="number" name="reactivos2017" [(ngModel)]="this.dataCliente.selectedCliente.reactivos2017">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-12">
                                 <label>Equipos Médicos y Hosp</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-12">
                                 <input type="number" name="eqpmed2017" [(ngModel)]="this.dataCliente.selectedCliente.eqpmed2017">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-12">
                                 <label>Productos Orgánicos</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-12">
                                 <input type="number" name="productosor2017" [(ngModel)]="this.dataCliente.selectedCliente.productosor2017">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-12">
                                 <label>Productos de Cosmética</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-12">
                                 <input type="number" name="productosco2017" [(ngModel)]="this.dataCliente.selectedCliente.productosco2017">
                             </div>
                         </div>
                     </div>
 
                     <div class=" col-md-6 col-sm-12">
-                        <div class=" container text-center bg-dark text-white bordes">
+                        <div class=" container text-center text-white bordes fondotitulo">
                             <span class="subtitulo">Facturación 2018</span>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                                <div class=" col-md-6 col-sm-12">
                                 <label>Prod. Farmacéuticos  </label>
                             </div>
-                            <div class="col-md-6">
+                            <div class=" col-md-6 col-sm-12">
                                 <input type="number" name="productosfa2018" [(ngModel)]="this.dataCliente.selectedCliente.productosfa2018">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                                <div class=" col-md-6 col-sm-12">
                                 <label>Reactivos de diagnóstico</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class=" col-md-6 col-sm-12">
                                 <input type="number" name="reactivos2018" [(ngModel)]="this.dataCliente.selectedCliente.reactivos2018">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class=" col-md-6 col-sm-12">
                                 <label>Equipos Médicos y Hosp</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class=" col-md-6 col-sm-12">
                                 <input type="number" name="eqpmed2018" [(ngModel)]="this.dataCliente.selectedCliente.eqpmed2018">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class=" col-md-6 col-sm-12">
                                 <label>Productos Orgánicos</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class=" col-md-6 col-sm-12">
                                 <input type="number" name="productosor2018" [(ngModel)]="this.dataCliente.selectedCliente.productosor2018">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                                <div class=" col-md-6 col-sm-12">
                                 <label>Productos de Cosmética</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class=" col-md-6 col-sm-12">
                                 <input type="number" name="productosco2018" [(ngModel)]="this.dataCliente.selectedCliente.productosco2018">
                             </div>
                         </div>
                     </div>
                     <div class=" col-md-6 col-sm-12">
-                        <div class=" container text-center bg-dark text-white bordes">
+                            <div class=" container text-center text-white bordes fondotitulo">
                             <span class="subtitulo">Facturación 2019</span>
                         </div>
                         <div class="row">
@@ -196,7 +200,7 @@
                         </div>
                     </div>
                     <div class=" col-md-6 col-sm-12 ">
-                        <div class=" container text-center bg-dark text-white bordes ">
+                            <div class=" container text-center text-white bordes fondotitulo">
                             <span class="subtitulo ">Facturación 2020</span>
                         </div>
                         <div class="row ">
@@ -247,7 +251,7 @@
             <div class="container ">
                 <div class="row ">
                     <div class="col-sm-12 ">
-                        <div class=" container-fluid text-center bg-dark text-white bordes ">
+                            <div class=" container text-center text-white bordes fondotitulo">
                             <span class="subtitulo ">Ubicación del Cliente</span>
                         </div>
                     </div>
@@ -282,7 +286,7 @@
                         <label>Dirección </label>
                     </div>
                     <div class="col-md-7 ">
-                        <input class="inputform " type="text " name="direccion " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.direccion ">
+                        <input class="inputform" type="text"name="direccion " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.direccion ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Telefono</label>
@@ -299,13 +303,13 @@
                         <label>Email </label>
                     </div>
                     <div class="col-md-5 ">
-                        <input class="inputform " type="email " name="email " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.email ">
+                        <input class="inputform" type="email" name="email " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.email ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Facebook </label>
                     </div>
                     <div class="col-md-4 ">
-                        <input class="inputform " type="email " name="facebook " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.facebook ">
+                        <input class="inputform" type="email" name="facebook " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.facebook ">
                     </div>
                 </div>
             </div>
@@ -317,13 +321,13 @@
                         <label>Web </label>
                     </div>
                     <div class="col-md-5 ">
-                        <input class="inputform " type="email " name="web " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.web ">
+                        <input class="inputform" type="email" name="web " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.web ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Linkedin </label>
                     </div>
-                    <div class="col-md-5 ">
-                        <input class="inputlarge " type="email " name="linkedin " [(ngModel)]="this.dataCliente.selectedCliente.linkedin ">
+                    <div class="col-md-4 ">
+                        <input class="inputform " type="email" name="linkedin "  style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.linkedin ">
                     </div>
                 </div>
             </div>
@@ -333,7 +337,7 @@
                         <label>Fecha Inicial Certificación BPA</label>
                     </div>
                     <div class="col-md-2 ">
-                        <input class="inputform " type="date" name="fechainibpa " [(ngModel)]="this.dataCliente.selectedCliente.fechainibpa ">
+                        <input class="inputform" type="date" name="fechainibpa " [(ngModel)]="this.dataCliente.selectedCliente.fechainibpa ">
                     </div>
                     <div class="col-md-1 "></div>
                     <div class="col-md-3 ">
@@ -368,17 +372,24 @@
             <div class="container ">
                 <div class="row ">
                     <div class="col-md-3 ">
+                        <label>Competencia BPA </label>
+                    </div>
+                    <div class="col-md-2 ">
+                        <input class="input" type="text" name="competenciabpa" [(ngModel)]="this.dataCliente.selectedCliente.competenciabpa">
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3 ">
                         <label>Competencia BMP </label>
                     </div>
-                    <div class="col-md-1 ">
-                        <input class="inputsmall " type="number " name="competenciabmp " [(ngModel)]="this.dataCliente.selectedCliente.competenciabmp ">
+                    <div class="col-md-2 ">
+                        <input class="input" type="text" name="competenciabmp" [(ngModel)]="this.dataCliente.selectedCliente.competenciabmp">
                     </div>
                 </div>
             </div>
             <div class="container ">
                 <div class="row ">
                     <div class=" col-md-12 ">
-                        <div class=" container-fluid text-center bg-dark text-white bordes ">
+                            <div class=" container text-center text-white bordes fondotitulo">
                             <span class="subtitulo ">Contactos y Responsables del Cliente</span>
                         </div>
                     </div>
@@ -390,19 +401,19 @@
                         <label>Ger.General </label>
                     </div>
                     <div class="col-md-3 ">
-                        <input class="inputform " type="text " name="ggeneral " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.ggeneral ">
+                        <input class="inputform" type="text"name="ggeneral " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.ggeneral ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Correo</label>
                     </div>
                     <div class="col-md-3 ">
-                        <input class="inputform " type="email " name="correogg " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correogg ">
+                        <input class="inputform" type="email" name="correogg " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correogg ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Teléfono</label>
                     </div>
                     <div class="col-md-2 ">
-                        <input class="inputform " type="text " name="telefonogg " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonogg ">
+                        <input class="inputform" type="text"name="telefonogg " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonogg ">
                     </div>
                 </div>
             </div>
@@ -412,20 +423,20 @@
                         <label>Dir.Técnico </label>
                     </div>
                     <div class="col-md-3 ">
-                        <input class="inputform " type="text " name="directort " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.directort ">
+                        <input class="inputform" type="text"name="directort " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.directort ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Correo</label>
                     </div>
                     <div class="col-md-3 ">
 
-                        <input class="inputform " type="email " name="correodt " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correodt ">
+                        <input class="inputform" type="email" name="correodt " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correodt ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Teléfono</label>
                     </div>
                     <div class="col-md-2 ">
-                        <input class="inputform " type="text " name="telefonodt " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonodt ">
+                        <input class="inputform" type="text"name="telefonodt " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonodt ">
                     </div>
                 </div>
             </div>
@@ -435,19 +446,19 @@
                         <label>Ger.Comercial </label>
                     </div>
                     <div class="col-md-3 ">
-                        <input class="inputform " type="text " name="gcomercial " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.gcomercial ">
+                        <input class="inputform" type="text"name="gcomercial " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.gcomercial ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Correo</label>
                     </div>
                     <div class="col-md-3 ">
-                        <input class="inputform " type="email " name="correogc " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correogc ">
+                        <input class="inputform" type="email" name="correogc " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correogc ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Teléfono</label>
                     </div>
                     <div class="col-md-2 ">
-                        <input class="inputform " type="text " name="telefonogc " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonogc ">
+                        <input class="inputform" type="text"name="telefonogc " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonogc ">
                     </div>
                 </div>
             </div>
@@ -457,19 +468,19 @@
                         <label>Jef.Logística </label>
                     </div>
                     <div class="col-md-3 ">
-                        <input class="inputform " type="text " name="jogistica " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.jlogistica ">
+                        <input class="inputform" type="text"name="jogistica " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.jlogistica ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Correo</label>
                     </div>
                     <div class="col-md-3 ">
-                        <input class="inputform " type="email " name="correojl " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correojl ">
+                        <input class="inputform" type="email" name="correojl " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correojl ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Teléfono</label>
                     </div>
                     <div class="col-md-2 ">
-                        <input class="inputform " type="text " name="telefonojl " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonojl ">
+                        <input class="inputform" type="text"name="telefonojl " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonojl ">
                     </div>
                 </div>
             </div>
@@ -480,19 +491,19 @@
                     </div>
                     <div class="col-md-3 ">
 
-                        <input class="inputform " type="text " name="apoderada " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.apoderada ">
+                        <input class="inputform" type="text"name="apoderada " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.apoderada ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Correo</label>
                     </div>
                     <div class="col-md-3 ">
-                        <input class="inputform " type="email " name="correoapo " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correoapo ">
+                        <input class="inputform" type="email" name="correoapo " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correoapo ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Teléfono</label>
                     </div>
                     <div class="col-md-2 ">
-                        <input class="inputform " type="text " name="telefonoapo " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonoapo ">
+                        <input class="inputform" type="text"name="telefonoapo " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonoapo ">
                     </div>
                 </div>
             </div>
@@ -503,19 +514,19 @@
                     </div>
                     <div class="col-md-3 ">
 
-                        <input class="inputform " type="text " name="gproduccion " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.gproduccion ">
+                        <input class="inputform" type="text"name="gproduccion " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.gproduccion ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Correo</label>
                     </div>
                     <div class="col-md-3 ">
-                        <input class="inputform " type="email " name="correogp " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correogp ">
+                        <input class="inputform" type="email" name="correogp " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correogp ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Teléfono</label>
                     </div>
                     <div class="col-md-2 ">
-                        <input class="inputform " type="text " name="telefonogp " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonogp ">
+                        <input class="inputform" type="text"name="telefonogp " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonogp ">
                     </div>
                 </div>
             </div>
@@ -526,19 +537,19 @@
                     </div>
                     <div class="col-md-3 ">
 
-                        <input class="inputform " type="text " name="administrador " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.administrador ">
+                        <input class="inputform" type="text"name="administrador " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.administrador ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Correo</label>
                     </div>
                     <div class="col-md-3 ">
-                        <input class="inputform " type="email " name="correoad " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correoad ">
+                        <input class="inputform" type="email" name="correoad " style="width:100%; " [(ngModel)]="this.dataCliente.selectedCliente.correoad ">
                     </div>
                     <div class="col-md-1 ">
                         <label>Teléfono</label>
                     </div>
                     <div class="col-md-2 ">
-                        <input class="inputform " type="text " name="telefonoad " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonoad ">
+                        <input class="inputform" type="text"name="telefonoad " style="width:80%; " [(ngModel)]="this.dataCliente.selectedCliente.telefonoad ">
                     </div>
                 </div>
             </div>
@@ -547,44 +558,44 @@
                 <div class="row ">
                     <div class="col-md-3 ">
                         <span>RESPONSABLE</span>
-                        <select name="responsable " class="form-control " [(ngModel)]="this.dataCliente.selectedCliente.responsable ">
-                            <option value="AG ">AG</option>
-                            <option value="DP ">DP</option>
-                            <option value="VM ">VM</option>
-                            <option value="EJECUTIVO ">EJECUTIVO</option>
+                        <select name="responsable" class="form-control" [(ngModel)]="this.dataCliente.selectedCliente.responsable ">
+                            <option value="AG">AG</option>
+                            <option value="DP">DP</option>
+                            <option value="VM">VM</option>
+                            <option value="EJECUTIVO">EJECUTIVO</option>
                     </select>
                     </div>
                     <div class="col-md-3 ">
                         <span>PLAZO CLIENTE</span>
-                        <select name="plazoclie " class="form-control " [(ngModel)]="this.dataCliente.selectedCliente.plazoclie ">
-                            <option value="CORTO ">CORTO</option>
-                            <option value="MEDIANO ">MEDIANO</option>
-                            <option value="LARGO ">LARGO</option>
-                            <option value="DESCARTADO ">DESCARTADO</option>
+                        <select name="plazoclie" class="form-control" [(ngModel)]="this.dataCliente.selectedCliente.plazoclie ">
+                            <option value="CORTO">CORTO</option>
+                            <option value="MEDIANO">MEDIANO</option>
+                            <option value="LARGO">LARGO</option>
+                            <option value="DESCARTADO">DESCARTADO</option>
                     </select>
                     </div>
                     <div class="col-md-3 ">
                         <span>SERVICIO</span>
-                        <select name="servicio " class="form-control " [(ngModel)]="this.dataCliente.selectedCliente.servicio ">
-                            <option value="BPA ">BPA</option>
-                            <option value="BPM ">BPM</option>
-                            <option value="BPD ">BPD</option>
-                            <option value="OPERACION LOGISTICA INTEGRAL ">OPERACION LOGISTICA INTEGRAL</option>
-                            <option value="ASESORIA REGULATORIA ">ASESORIA REGULATORIA</option>
+                        <select name="servicio" class="form-control" [(ngModel)]="this.dataCliente.selectedCliente.servicio ">
+                            <option value="BPA">BPA</option>
+                            <option value="BPM">BPM</option>
+                            <option value="BPD">BPD</option>
+                            <option value="OPERACION LOGISTICA INTEGRAL">OPERACION LOGISTICA INTEGRAL</option>
+                            <option value="ASESORIA REGULATORIA">ASESORIA REGULATORIA</option>
                         </select>
 
                     </div>
                     <div class="col-md-3 ">
                         <span>STATUS</span>
-                        <select name="status " class="form-control " [(ngModel)]="this.dataCliente.selectedCliente.status ">
-                        <option value="CONTACTO ">CONTACTO</option>
-                        <option value="NO CONTACTAR ">NO CONTACTAR</option>
-                        <option value="PENDIENTE ">PENDIENTE</option>
-                        <option value="PENDIENTE ">PRESENTACION</option>
-                        <option value="VISITA / REUNION ">VISITA / REUNION</option>
-                        <option value="PROPUESTA ENVIADA ">PROPUESTA ENVIADA</option>
-                        <option value="MANEJO DE OBSERVACIONES ">MANEJO DE OBSERVACIONES</option>
-                        <option value="CIERRE ">CIERRE</option>
+                        <select name="status" class="form-control" [(ngModel)]="this.dataCliente.selectedCliente.status ">
+                        <option value="CONTACTO">CONTACTO</option>
+                        <option value="NO CONTACTAR">NO CONTACTAR</option>
+                        <option value="PENDIENTE">PENDIENTE</option>
+                        <option value="PRESENTACION">PRESENTACION</option>
+                        <option value="VISITA / REUNION">VISITA / REUNION</option>
+                        <option value="PROPUESTA ENVIADA">PROPUESTA ENVIADA</option>
+                        <option value="MANEJO DE OBSERVACIONES">MANEJO DE OBSERVACIONES</option>
+                        <option value="CIERRE">CIERRE</option>
                     </select>
                     </div>
 
@@ -598,7 +609,7 @@
                                 <span class="input-group-text">Accion a seguir</span>
                             </div>
                             <div class="col-md-10 ">
-                                <input type="text " class="input-form text-left controlaccion bordes " style="color: white;width:100%;background-color:grey;font-size:15px;font-family: cursive; " name="accion " [(ngModel)]="this.dataCliente.selectedCliente.accion ">
+                                <input type="text"class="input-form text-left controlaccion bordes " style="color: white;width:100%;background-color:grey;font-size:15px;font-family: tahoma; " name="accion " [(ngModel)]="this.dataCliente.selectedCliente.accion ">
                             </div>
                         </div>
                     </div>
@@ -611,7 +622,7 @@
                             <button  (click)="nuevoCliente()"type="button" class="btn btn-primary btn-block m-1">Nuevo</button>
                         </div>-->
                     <div class="col-md-6 col-sm-12 text-center">
-                        <button (click)="saveCliente(this.dataCliente.selectedCliente)" type="button" class="btn btn-primary btn-block">Guardar</button>
+                        <button (click)="saveCliente(this.dataCliente.selectedCliente)" type="button" class="btn btn-block botonguardar">Guardar</button>
                     </div>
                     <div class="col-md-6 col-sm-12 text-center">
                         <button (click)="cerrarFicha()" type="button" class="btn btn-danger btn-block">Cerrar</button>
@@ -632,4 +643,4 @@
 </div>
 
 
-<app-clientes *ngIf="mostrarbuscar"></app-clientes>
+<!--<app-clientes *ngIf="mostrarbuscar"></app-clientes>-->

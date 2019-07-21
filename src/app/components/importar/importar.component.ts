@@ -26,6 +26,10 @@ export class ImportarComponent implements OnInit {
               private _cargaImagenes:CargaimagenService) { }
 
   ngOnInit() {
+    //this.http.get('https://firebasestorage.googleapis.com/v0/b/proyectobd-85f2c.appspot.com/o/img%2Fimport.json?alt=media&token=d82bd17d-a011-47e2-8bae-5903b543e128')
+    //.subscribe(data=>{
+    //console.log(data)})
+    
   }
 
   cargarImagenes(){

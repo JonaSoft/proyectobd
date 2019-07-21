@@ -13,6 +13,7 @@ import { ClienteInterface } from '../../models/clienteinterface';
 import { FileItem } from "../../models/file-item";
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map'
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 //import { subscribeOn } from 'rxjs/operators';
 //import { map } from 'rxjs-compat/operator/map';
 //import { map } from 'rxjs/operators'
@@ -25,11 +26,12 @@ export interface Item{nombre:string;url:string;}
   styleUrls: ['./servicio.component.css']
 })
 export class ServicioComponent implements OnInit {
-   datos=[];
-   flightExport=[];
-   estaSobreElemento=false;
-   archivos: FileItem[] = [];
-   private itemsCollection: AngularFirestoreCollection<any>;
+  datos=[];
+  flightExport=[];
+  estaSobreElemento=false;
+  //loading= true;
+  archivos: FileItem[] = [];
+  private itemsCollection: AngularFirestoreCollection<any>;
   items: Observable<any[]>;
    //flightnodo:string;
   constructor(private router:Router,
@@ -55,10 +57,13 @@ export class ServicioComponent implements OnInit {
    irImportar=true;
    closeImportar=false;
    public nuevos:any=[];
-   loading=true;
+   loading=false;
 
                //public urllink=this.items[0].url;
   ngOnInit() {
+    //this.http.get('/v0/b/proyectobd-85f2c.appspot.com/o/img%2Fimport.json?alt=media&token=d82bd17d-a011-47e2-8bae-5903b543e128')
+    //  .subscribe(data=>{
+    //  console.log(data)})
   }
    
   newFicha(){
@@ -85,39 +90,46 @@ export class ServicioComponent implements OnInit {
    //this.mostrartablaimportar=false
  }
  cargajson(){
+  
    this.mostrarimportar=false;
    this.mostrarfichaadd=false;
    console.log(this.mostrartablaimportar)
    if(this.mostrartablaimportar===false){
-    console.log('LLamar archivo');
+  
+      console.log('LLamar archivo');
      // this.irImportar=false;
       //this.closeImportar=true;
-      this.http.get('../../../assets/import.json')
+      this.http.get('/v0/b/proyectobd-85f2c.appspot.com/o/img%2Fimport.json?alt=media&token=ccbf45a7-8af9-48e7-bf01-6a26b009ff36')
+      //this.http.get('../../../assets/import.json')
       .subscribe(data=>{
          console.log(data);
+      
 
          const importardata= confirm('Seguro de iniciar exportación de '+(Object.values(data).length)+' registros del archivo subido?')
          if(importardata){
+          this.loading=true;
            for(let item in data ){
-              //console.log(data[item]);
               setTimeout(() => {
                  this.nuevos=this.dataCliente.addClientes(data[item]);
-                 //.map((res:any)=>(console.log(res),
-                 //this.nuevos=res))
-                 
               }, 1000);
-           
-              //console.log(data[item])
-              //this.nuevos=data[item]
-              //console.log(this.nuevos)
            }
-           this.mostrartablaimportar=true
+           
+           //window.alert('Exportación Culminada...!!!');
+           this.mostrartablaimportar=true;
+           this.loading= false
+
           }
-         
+             
         
       })
-    }if (this.mostrartablaimportar===true){
-      this.mostrartablaimportar=false;
+     
+     
+
+    }
+    if (this.mostrartablaimportar===true){
+        this.mostrartablaimportar=false;
+        this.loading = false
+      
     }
 
       
@@ -127,7 +139,8 @@ export class ServicioComponent implements OnInit {
        //  this.mostrartablaimportar=false;
         // this.irImportar=true;
         // this.closeImportar=false
-               
+       
+        this.mostrartablaimportar=false;            
    }
    
  //}
@@ -150,7 +163,7 @@ export class ServicioComponent implements OnInit {
    }
    buscaUrl(){
       let http:HttpClient;
-      http.get('../../assets/import.json')
+      http.get('https://firebasestorage.googleapis.com/v0/b/proyectobd-85f2c.appspot.com/o/img%2Fimport.json?alt=media&token=0e99e2d8-ae5d-47aa-acb3-bb643233ca96')
       .subscribe(data=>{
          console.log(data)
       })

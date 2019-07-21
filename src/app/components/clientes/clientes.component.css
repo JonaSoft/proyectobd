@@ -1,6 +1,6 @@
 .fondomain {
     width: 100%;
-    min-height: 1200px;
+    min-height: 1500px;
     height: auto;
     background-color: gray
 }
@@ -26,7 +26,9 @@
 
 .fuente {
     font-size: 10px;
-    font-family: cursive
+    font-family: tahoma;
+    background-color: rgb(25, 79, 144);
+    height: 20px
 }
 
 th {
@@ -34,7 +36,7 @@ th {
     height: auto;
     width: auto;
     color: white;
-    font-family: cursive;
+    font-family: tahoma;
 }
 
 td {
@@ -48,7 +50,7 @@ td {
 input {
     text-transform: uppercase;
     font-size: 13px;
-    font-family: cursive
+    font-family: tahoma
 }
 
 .text-large {
@@ -75,14 +77,124 @@ input {
     width: auto;
 }
 
+
+/*parte del ngClass para fitros*/
+
 .itemfondoini {
-    background-color: rgb(118, 119, 122);
-    color: white;
+    background-color: rgb(196, 201, 216);
+    color: black;
+    font-weight: bold
+}
+
+.itemfondoini2 {
+    background-color: rgb(196, 201, 216);
+    color: black;
+    font-weight: bold
+}
+
+.itemfondoini3 {
+    background-color: rgb(196, 201, 216);
+    color: black;
+    font-weight: bold
+}
+
+.itemfondoini4 {
+    background-color: rgb(196, 201, 216);
+    color: black;
+    font-weight: bold
+}
+
+.itemfondoini5 {
+    background-color: rgb(196, 201, 216);
+    color: black;
+    font-weight: bold
+}
+
+.itemfondoini6 {
+    background-color: rgb(196, 201, 216);
+    color: black;
+    font-weight: bold
+}
+
+.itemfondoini7 {
+    background-color: rgb(196, 201, 216);
+    color: black;
+    font-weight: bold
+}
+
+.itemfondoini8 {
+    background-color: rgb(196, 201, 216);
+    color: black;
+    font-weight: bold
+}
+
+.itemfondoini4 {
+    background-color: rgb(196, 201, 216);
+    color: black;
+    font-weight: bold
 }
 
 .itemfondo {
+    color: black;
+    background-color: rgb(46, 168, 54);
+    font-weight: bold
+}
+
+.itemfondo2 {
+    color: black;
+    background-color: rgb(46, 168, 54);
+    font-weight: bold
+}
+
+.itemfondo3 {
+    color: black;
+    background-color: rgb(46, 168, 54);
+    font-weight: bold
+}
+
+.itemfondo4 {
+    color: black;
+    background-color: rgb(46, 168, 54);
+    font-weight: bold
+}
+
+.itemfondo5 {
+    color: black;
+    background-color: rgb(46, 168, 54);
+    font-weight: bold
+}
+
+.itemfondo6 {
+    color: black;
+    background-color: rgb(46, 168, 54);
+    font-weight: bold
+}
+
+.itemfondo7 {
+    color: black;
+    background-color: rgb(46, 168, 54);
+    font-weight: bold
+}
+
+.itemfondo8 {
+    color: black;
+    background-color: rgb(46, 168, 54);
+    font-weight: bold
+}
+
+.textobuscar {
+    font-size: 12px;
+    font-family: tahoma;
+    font-weight: bolder
+}
+
+
+/*************************************/
+
+.itemfondotodos {
     background-color: rgb(46, 168, 54);
     color: white;
+    font-weight: bold
 }
 
 .iconosaccion {
@@ -90,7 +202,6 @@ input {
 }
 
 .btn-bloque {
-    background-color: rgb(46, 168, 54);
     color: white;
     margin: auto;
     padding: 0
@@ -98,19 +209,25 @@ input {
 
 .btn-bloque:hover {
     color: black;
-    background-color: rgb(242, 246, 185);
-    font-family: cursive
+    background-color: rgb(46, 168, 54);
+    text-align: left
 }
 
-div>ul>a {
+.filtro {
     height: 35px;
-    font-size: 8px;
+    font-size: 9px;
+    color: black;
+    text-align: left;
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 3px;
 }
 
-div>ul>a:hover {
+.filtro:hover {
     color: black;
-    background-color: rgb(242, 246, 185);
-    font-family: cursive
+    background-color: rgb(46, 168, 54);
+    font-family: tahoma
 }
 
 

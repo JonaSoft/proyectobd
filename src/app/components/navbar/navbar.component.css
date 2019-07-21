@@ -1,9 +1,11 @@
 a {
-    font-family: cursive;
+    font-family: tahoma;
     color: white;
+    font-size: 16px
+   
 }
 
 a:hover {
-    font-family: cursive;
-    color: rgb(25, 79, 144)
+    font-family: tahoma;
+    color: rgb(46, 168, 54);
 }
